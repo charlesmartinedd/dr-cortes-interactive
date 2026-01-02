@@ -1,0 +1,15 @@
+{
+  "name": "dr-cortes-interactive",
+  "version": "1.0.0",
+  "description": "Interactive Dr. Cortes Timeline with Real-time Avatar Chatbot",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "ws": "^8.14.2",
+    "openai": "^4.20.0"
+  }
+}
