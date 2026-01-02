@@ -398,7 +398,7 @@ class ModalManager {
         if (!modal) return;
 
         // Close any open modal first
-        this.closeModal();
+        this.closeModal(true);
 
         modal.classList.add('active');
         state.activeModal = modal;
@@ -408,13 +408,13 @@ class ModalManager {
         modal.querySelector('.modal-close')?.focus();
     }
 
-    closeModal() {
+    closeModal(suppressParentNav = false) {
         if (state.activeModal) {
             state.activeModal.classList.remove('active');
             state.activeModal = null;
 
             // If there's a parent modal, return to it instead of main page
-            if (state.parentModal) {
+            if (state.parentModal && !suppressParentNav) {
                 const parentModalId = state.parentModal;
                 state.parentModal = null;
                 this.openModal(parentModalId);
