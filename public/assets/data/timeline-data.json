@@ -111,21 +111,25 @@
             "title": "Chicanos (Chapter in Teaching Ethnic Studies)",
             "year": 1973,
             "category": "Articles",
-            "description": "Chapter in James Banks' seminal book 'Teaching Ethnic Studies: Concepts and Strategies'",
+            "description": "Chapter in James Banks' seminal book 'Teaching Ethnic Studies: Concepts and Strategies'.",
             "awards": null,
             "isbn": null,
-            "url": null,
-            "significance": "Widely adopted for teacher training nationwide; established Cortés as founding voice in multicultural education"
+            "url": "https://eric.ed.gov/?id=ED079204",
+            "significance": "Widely adopted for teacher training nationwide; established Cortés as founding voice in multicultural education",
+            "enhanced_description": "Contributed to James A. Banks's influential 1973 volume 'Teaching Ethnic Studies: Concepts and Strategies' (National Council for the Social Studies), this chapter represented one of Cortés's earliest and most significant contributions to the emerging field of multicultural education during its formative years. Written when both Chicano Studies and ethnic studies were nascent fields lacking established pedagogical frameworks, the chapter provided practical strategies and conceptual frameworks for teaching about the Chicano experience in K-12 classrooms to teachers largely unprepared to address this content. When Banks's book became widely adopted for teacher training programs across the country, Cortés found himself launched onto the national speakers' circuit for K-12 multicultural education, establishing the foundation for his career as a diversity educator and consultant.",
+            "related_themes": ["Chicano studies", "multicultural education", "teacher training", "K-12 curriculum"]
           },
           {
-            "title": "ERIC Document: Teaching the Chicano Experience",
+            "title": "Teaching the Chicano Experience (ERIC Document)",
             "year": 1973,
             "category": "Articles",
-            "description": "Educational Resources Information Center (ERIC) publication on teaching methodologies for Chicano Studies",
+            "description": "Educational Resources Information Center (ERIC) publication on teaching methodologies for Chicano Studies.",
             "awards": null,
             "isbn": "ED079204",
-            "url": null,
-            "significance": "Early foundational document in Chicano Studies pedagogy"
+            "url": "https://files.eric.ed.gov/fulltext/ED079204.pdf",
+            "significance": "Early foundational document in Chicano Studies pedagogy",
+            "enhanced_description": "Published through the Educational Resources Information Center (ERIC), this document provided one of the earliest comprehensive guides for educators seeking to incorporate Chicano history and culture into their teaching practice. Written during the formative years of Chicano Studies as an academic discipline, the publication addressed practical challenges facing teachers who wanted to diversify their curricula but lacked accessible resources and pedagogical models. The document helped establish methodological approaches for ethnic studies pedagogy that influenced subsequent curriculum development nationwide.",
+            "related_themes": ["Chicano studies", "pedagogy", "ERIC", "curriculum resources"]
           }
         ],
         "Books - Scholarly": [
@@ -133,21 +137,25 @@
             "title": "Gaúcho Politics in Brazil: The Politics of Rio Grande do Sul 1930-1964",
             "year": 1974,
             "category": "Books - Scholarly",
-            "description": "Scholarly monograph on regional Brazilian politics based on doctoral dissertation",
+            "description": "Scholarly monograph on regional Brazilian politics based on doctoral dissertation.",
             "awards": "Hubert Herring Memorial Award of Pacific Coast Council on Latin American Studies",
             "isbn": "082630303X",
-            "url": null,
-            "significance": "Award-winning first book; established reputation as Latin American historian"
+            "url": "https://www.amazon.com/Gaucho-Politics-Brazil-Grande-1930-1964/dp/082630303X",
+            "significance": "Award-winning first book; established reputation as Latin American historian",
+            "enhanced_description": "Based on Cortés's doctoral dissertation research, this scholarly monograph examines regional politics in Rio Grande do Sul, Brazil, during a crucial period of Brazilian political development from the fall of the Old Republic through the military dictatorship. The book analyzes how the distinctive gaucho culture and regional identity of Rio Grande do Sul influenced political movements, party formations, and relationships with the national Brazilian government, contributing to understanding of how regional identities shape national politics. The work received the prestigious Hubert Herring Memorial Award from the Pacific Coast Council on Latin American Studies, establishing Cortés's early credentials as a rigorous Latin American historian before he shifted his primary focus to Chicano studies and multicultural education.",
+            "related_themes": ["Brazilian politics", "Latin American history", "regional studies", "gaúcho culture"]
           },
           {
             "title": "Three Perspectives on Ethnicity: Blacks, Chicanos, and Native Americans",
             "year": 1976,
             "category": "Books - Scholarly",
-            "description": "Comparative examination of ethnicity from perspectives of three major American ethnic groups",
+            "description": "Comparative examination of ethnicity from perspectives of three major American ethnic groups.",
             "awards": null,
             "isbn": "0399503692",
-            "url": null,
-            "significance": "Pioneering work in comparative ethnic studies"
+            "url": "https://www.abebooks.com/book-search/title/three-perspectives-ethnicity-blacks-chicanos/",
+            "significance": "Pioneering work in comparative ethnic studies",
+            "enhanced_description": "This pioneering comparative study examines ethnicity through the distinct lenses of African American, Chicano, and Native American experiences in the United States, representing one of the earliest scholarly efforts to analyze ethnic identity across multiple groups within a single analytical framework. The book contributed to the emerging field of comparative ethnic studies by identifying both unique aspects of each group's historical experience and common patterns in how ethnic minorities navigate American society. Co-authored with colleagues, the work helped establish methodological approaches for studying ethnicity that acknowledged both diversity and shared experiences.",
+            "related_themes": ["comparative ethnic studies", "African American studies", "Chicano studies", "Native American studies"]
           }
         ],
         "Curriculum Development": [
@@ -233,11 +241,13 @@
             "title": "Beyond Language: Social and Cultural Factors in Schooling Language Minority Students",
             "year": 1986,
             "category": "Books - Scholarly",
-            "description": "Comprehensive examination of bilingual/multicultural education and the social and cultural factors affecting language minority students",
+            "description": "Comprehensive examination of bilingual/multicultural education and the social and cultural factors affecting language minority students.",
             "awards": null,
             "isbn": "0897550242",
-            "url": null,
-            "significance": "Influential work in bilingual education scholarship; widely cited"
+            "url": "https://eric.ed.gov/?id=ED304241",
+            "significance": "Influential work in bilingual education scholarship; widely cited",
+            "enhanced_description": "As the author of the introductory chapter in this influential California State Department of Education anthology, Cortés presents a theoretical framework called the 'contextual interaction model' for understanding how sociocultural factors beyond linguistics influence language minority education and student achievement in U.S. public schools. The model examines variables including family socioeconomic status, community resources, school institutional practices, student motivation, and cultural alignment between home and school that impede or support successful academic performance by immigrant minority students. Published by the California State Department of Education and funded by the Office of Bilingual Education and Minority Languages Affairs, the work influenced state-level policy discussions on bilingual and multicultural education during the 1980s, demonstrating how theoretical frameworks developed by scholars could guide practical policy implementation.",
+            "related_themes": ["bilingual education", "language minority students", "contextual interaction model", "California education policy"]
           }
         ],
         "Books - Edited Works": [
@@ -504,30 +514,26 @@
             "title": "The Children Are Watching: How the Media Teach about Diversity",
             "year": 2000,
             "category": "Books - Scholarly",
-            "description": "Groundbreaking analysis of how mass media—television, film, news, advertising—educate viewers about diversity",
+            "description": "Groundbreaking analysis of how mass media—television, film, news, advertising—educate viewers about diversity.",
             "awards": null,
             "isbn": "0807739375",
-            "url": null,
+            "url": "https://www.amazon.com/Children-Are-Watching-Diversity-Multicultural/dp/0807739375",
             "significance": "Landmark book widely cited in diversity education; foundation for Nickelodeon consulting",
-            "enhanced_description": "Published in 2000, this influential book analyzes how mass media—television, film, news, advertising—teach viewers about diversity, often without viewers realizing they are being educated. The book's publication coincided with Cortés joining Nickelodeon's 'Dora the Explorer' as Creative/Cultural Advisor, allowing him to put his media literacy theories into practice on one of children's television's most successful shows.",
-            "related_themes": [
-              "media literacy",
-              "diversity in media",
-              "informal education"
-            ],
-            "corpus_sources": [
-              "dr-cortes-rag-corpus/extracted/blog_posts/"
-            ]
+            "enhanced_description": "Published by Teachers College Press, this groundbreaking book analyzes how both entertainment and news media frame diversity-related themes and transmit values concerning race, ethnicity, gender, religion, and sexual orientation, arguing that media function as a 'hidden curriculum' educating viewers without their awareness. Cortés examines how media contribute to stereotypes while also shaping public thinking about diversity issues, demonstrating that the media serve as informal educators alongside schools and families. The work is widely cited in both diversity education and media studies literature and established Cortés as a leading voice in understanding media's pedagogical function. Published the same year he joined Nickelodeon's 'Dora the Explorer' as Creative/Cultural Advisor, the book's theoretical frameworks directly informed his practical media consulting work and demonstrated how academic scholarship could guide culturally authentic representation in mainstream entertainment.",
+            "related_themes": ["media literacy", "diversity in media", "informal education", "stereotypes"],
+            "corpus_sources": ["dr-cortes-rag-corpus/extracted/blog_posts/"]
           },
           {
             "title": "The Making — and Remaking — of a Multiculturalist",
             "year": 2002,
             "category": "Books - Scholarly",
-            "description": "Autobiographical exploration of development as multiculturalist scholar and educator",
+            "description": "Autobiographical exploration of development as multiculturalist scholar and educator.",
             "awards": null,
             "isbn": "0807742511",
-            "url": null,
-            "significance": "Important contribution to educational autobiography literature"
+            "url": "https://www.amazon.com/Making-Remaking-Multiculturalist-Multicultural-Education/dp/0807742511",
+            "significance": "Important contribution to educational autobiography literature",
+            "enhanced_description": "Published by Teachers College Press, this autobiographical educational memoir traces Cortés's personal and professional journey in becoming and continuously evolving as a multiculturalist and diversity educator while exploring the broader development of multicultural education as an academic field and social movement. The book demonstrates how Cortés's personal story—growing up in a mixed-race, interfaith family; studying Latin American history; encountering the Chicano movement; pioneering ethnic studies—mirrors the larger trajectory of multicultural education from the 1960s through the early 2000s. The work functions simultaneously as theoretical contribution and historical document chronicling the emergence of multicultural education from its formative years, positioning his intellectual autobiography as inseparable from the field's biography.",
+            "related_themes": ["autobiography", "multicultural education history", "professional development"]
           }
         ],
         "Media Consulting": [
@@ -535,21 +541,14 @@
             "title": "Dora the Explorer: Creative/Cultural Advisor",
             "year": 2000,
             "category": "Media Consulting",
-            "description": "Creative and Cultural Advisor for Nickelodeon's groundbreaking bilingual children's program (2000-2019)",
+            "description": "Creative and Cultural Advisor for Nickelodeon's groundbreaking bilingual children's program (2000-2019).",
             "awards": "NAACP Image Award (2009)",
             "isbn": null,
-            "url": null,
+            "url": "https://www.nick.com/shows/dora-the-explorer",
             "significance": "Championed making Dora 'pan-Latino'—a proud Latina without specific national origin, allowing Latino children of all backgrounds to identify with her",
-            "enhanced_description": "For over two decades, Dr. Cortés served as Creative/Cultural Advisor for Nickelodeon's groundbreaking show. He advocated for making Dora 'pan-Latino'—a proud Latina without a specific national origin—so children of all Latino backgrounds could identify with her. As he explained: 'Dora constantly draws on her bilingual skills to build intercultural bridges.' His work earned an NAACP Image Award in 2009.",
-            "related_themes": [
-              "children's media",
-              "Latino representation",
-              "bilingual education",
-              "cultural consulting"
-            ],
-            "corpus_sources": [
-              "dr-cortes-rag-corpus/extracted/blog_posts/"
-            ]
+            "enhanced_description": "For nearly two decades, Cortés served as Creative/Cultural Advisor for this groundbreaking bilingual children's educational television series featuring a young Latina protagonist, winning a 2009 NAACP Image Award for this work. His ongoing consultation helped ensure cultural authenticity, appropriate use of Spanish language, and positive representation of Latino culture for young audiences, with particular emphasis on making Dora 'pan-Latino'—a proud Latina without a specific national origin—so children of all Latino backgrounds could identify with her. 'Dora the Explorer' became one of Nickelodeon's most successful and influential series, running from 2000 to 2019, and demonstrated the viability and mass appeal of bicultural programming for mainstream audiences. Cortés's decades-long consulting relationship exemplifies how his theoretical insights about diversity education and media representation could be applied at massive scale, reaching millions of children while demonstrating that cultural authenticity and mainstream commercial success are not mutually exclusive.",
+            "related_themes": ["children's media", "Latino representation", "bilingual education", "cultural consulting"],
+            "corpus_sources": ["dr-cortes-rag-corpus/extracted/blog_posts/"]
           },
           {
             "title": "Go, Diego, Go!: Creative/Cultural Advisor",
@@ -671,34 +670,28 @@
             "title": "Rose Hill: An Intermarriage before Its Time",
             "year": 2012,
             "category": "Biography/Memoir",
-            "description": "Memoir about growing up in an interracial, interfaith family in post-WWII Kansas City",
+            "description": "Memoir about growing up in an interracial, interfaith family in post-WWII Kansas City.",
             "awards": null,
             "isbn": "1597141887",
-            "url": null,
+            "url": "https://www.heydaybooks.com/catalog/rose-hill-an-intermarriage-before-its-time/",
             "significance": "Addresses navigating racial, ethnic, and religious fault lines; includes the famous 'Carl moment'",
-            "enhanced_description": "This memoir explores Cortés's unique upbringing as the son of a Mexican Catholic immigrant father from Guadalajara and a Jewish American mother of Ukrainian and Austrian heritage. Set in racially segregated post-WWII Kansas City, it chronicles how navigating multiple identities shaped his life's work on diversity. The book includes the now-famous 'Carl moment' when his father defended his right to his Mexican name. Cortés later adapted the memoir into a one-person play performed across the United States.",
-            "related_themes": [
-              "memoir",
-              "intermarriage",
-              "identity",
-              "Kansas City",
-              "Jewish-Mexican heritage"
-            ],
-            "corpus_sources": [
-              "dr-cortes-rag-corpus/extracted/blog_posts/"
-            ]
+            "enhanced_description": "Published by Heyday Books, this memoir recounts Cortés's childhood as the son of a Mexican Catholic immigrant father from Guadalajara and an American-born Jewish mother of Eastern European descent in racially segregated, religiously divided Kansas City, Missouri during the 1940s and 1950s. The marriage occurred in 1933, when such interracial, interfaith unions were rare and faced both internal family conflict and external social pressure, providing rich material for Cortés's exploration of navigating complex, sometimes contradictory identities in a rigidly stratified community. Adapted from his nationally successful one-person play 'A Conversation with Alana' (performed approximately 160 times at universities across the country), the memoir foregrounds the now-famous 'Carl moment' when his father stormed to the school principal's office to defend Carlos's right to his Mexican name. The work serves as both personal narrative and historical document chronicling a moment before intermarriage became normalized in American culture.",
+            "related_themes": ["memoir", "intermarriage", "identity", "Kansas City", "Jewish-Mexican heritage"],
+            "corpus_sources": ["dr-cortes-rag-corpus/extracted/blog_posts/"]
           }
         ],
         "Plays": [
           {
-            "title": "Rose Hill: The Play",
+            "title": "A Conversation with Alana: One Boy's Multicultural Rite of Passage",
             "year": 2014,
             "category": "Plays",
-            "description": "One-person autobiographical play adapted from the memoir, exploring growing up at the intersection of Mexican Catholic and Jewish American identities",
+            "description": "One-person autobiographical play about growing up at the intersection of Mexican Catholic and Jewish American identities.",
             "awards": null,
             "isbn": null,
-            "url": null,
-            "significance": "Performed at universities, conferences, and theaters across the United States"
+            "url": "https://carlosecortes.com/rose-hill/",
+            "significance": "Performed approximately 160 times at universities, conferences, and theaters across the United States",
+            "enhanced_description": "This one-person autobiographical play presents Cortés's story of growing up in racially segregated, religiously divided post-World War II Kansas City, Missouri, using the theatrical conceit of a conversation with an empty chair representing his 46-year-old daughter Alana 'in a conversation that never occurred.' The son of a Mexican Catholic immigrant father and an American-born Jewish mother, Cortés traces his navigation of multiple identity boundaries and the family stories—including the iconic defense of his Mexican name—that shaped his commitment to authentic inclusion. The play has been performed approximately 160 times throughout the United States at universities, colleges, and educational institutions, making it one of his most publicly visible and widely performed works. The theatrical work was adapted into his 2012 memoir 'Rose Hill' and remains a powerful vehicle for communicating his personal journey and its connection to his professional mission.",
+            "related_themes": ["theater", "memoir", "identity", "multicultural", "Jewish-Mexican heritage"]
           }
         ],
         "Books - Poetry": [
@@ -706,11 +699,13 @@
             "title": "Fourth Quarter: Reflections of a Cranky Old Man",
             "year": 2016,
             "category": "Books - Poetry",
-            "description": "First book of poetry reflecting on life as an octogenarian with wit and wisdom",
+            "description": "First book of poetry reflecting on life as an octogenarian with wit and wisdom.",
             "awards": "Honorable Mention for Best Book of Poetry, 2017 International Latino Book Awards",
             "isbn": null,
-            "url": null,
-            "significance": "Award-winning poetry debut that launched his literary career"
+            "url": "http://badkneepress.com/carlos-e.-cort%C3%A9s.html",
+            "significance": "Award-winning poetry debut that launched his literary career",
+            "enhanced_description": "This poetry collection, Cortés's first and only book of verse to date, reflects on life in the 'fourth quarter' from the perspective of an octogenarian with wit, wisdom, and unflinching honesty about aging, mortality, cultural change, and the ironies of living through transformative historical periods. The collection received Honorable Mention for Best Book of Poetry at the 2017 International Latino Book Awards, demonstrating Cortés's versatility as a writer and his ability to address diversity, identity, and social commentary through creative literary forms beyond academic scholarship. Published by Bad Knee Press, the poems employ ironic, sometimes dark humor to examine aging not as decline but as a vantage point from which to observe how the world has and hasn't changed.",
+            "related_themes": ["poetry", "aging", "reflection", "humor", "Latino literature"]
           }
         ],
         "Books - Edited Works": [
@@ -718,11 +713,13 @@
             "title": "Multicultural America: A Multimedia Encyclopedia",
             "year": 2013,
             "category": "Books - Edited Works",
-            "description": "Four-volume comprehensive multimedia encyclopedia on historical and contemporary multicultural America",
+            "description": "Four-volume comprehensive multimedia encyclopedia on historical and contemporary multicultural America.",
             "awards": null,
             "isbn": "9781452276274",
-            "url": null,
-            "significance": "Major reference work covering all aspects of multicultural America"
+            "url": "https://us.sagepub.com/en-us/nam/multicultural-america/book237498",
+            "significance": "Major reference work covering all aspects of multicultural America",
+            "enhanced_description": "Edited by Cortés for SAGE Publications, this four-volume, 2,528-page comprehensive encyclopedia contains more than 900 signed entries from scholars across disciplines examining historical and contemporary issues in multicultural America. The encyclopedia was among the first major reference publications to extensively use newly released 2010 U.S. Census data to analyze multiculturalism's present and future trajectory in the United States, providing evidence-based analysis of demographic change and its cultural implications. As general editor, Cortés coordinated contributions from numerous scholars, creating a major, authoritative reference work in multicultural studies that synthesized decades of research.",
+            "related_themes": ["encyclopedia", "reference work", "multicultural studies", "demography"]
           }
         ],
         "Articles": [
@@ -829,23 +826,24 @@
     },
     "2020s": {
       "theme": "Anti-Racism, Renewal & Legacy",
-      "totalWorks": 18,
+      "totalWorks": 22,
       "categories": {
         "Articles": [
           {
             "title": "Renewing Multicultural Education: An Ancient Mariner's Manifesto",
             "year": 2025,
             "category": "Articles",
-            "description": "Journal article based on 2024 NAME conference keynote, calling for renewal of multicultural education's founding principles",
+            "description": "Journal article based on 2024 NAME conference keynote, calling for renewal of multicultural education's founding principles.",
             "awards": null,
             "isbn": "10.1080/15210960.2025.2558492",
-            "url": "https://doi.org/10.1080/15210960.2025.2558492",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/15210960.2025.2558492",
             "significance": "Influential call for returning to bridge-building, optimistic approach to diversity",
-            "enhanced_description": "Based on his 2024 NAME conference keynote in Anaheim, this article advocates for returning to the founding principles of 1970s multicultural education: bridge-building inclusion, uninhibited dialogue, and optimistic vision. Cortés identifies 'three bad habits' in contemporary diversity work and calls for course correction: 'We can still overcome.'",
+            "enhanced_description": "Published in Multicultural Perspectives in October 2025, this article adapts Cortés's keynote address delivered at the 2024 National Association for Multicultural Education conference in Anaheim, California. The manifesto calls for returning to the founding principles of 1970s multicultural education—bridge-building inclusion, uninhibited dialogue, and optimistic vision—while identifying three 'bad habits' that have undermined the movement: 'admiring the problem' instead of pivoting to solutions, lack of inclusivity and transparency in implementation, and 'linguistic madness' that alienates potential allies. Drawing on his signature 'Cortés Triad' framework (look unflinchingly at the past, apply it to the present, pivot to the future), he argues that diversity work must build bridges rather than barriers and maintain hope rather than remain mired in grievance.",
             "related_themes": [
               "multicultural education renewal",
               "diversity critique",
-              "bridge-building"
+              "bridge-building",
+              "Cortés Triad"
             ],
             "corpus_sources": [
               "dr-cortes-rag-corpus/extracted/blog_posts/"
@@ -854,34 +852,53 @@
         ],
         "Blogs": [
           {
-            "title": "Renewing Diversity Series (Parts 1-9)",
-            "year": 2024,
+            "title": "Diversity and Speech Column Series (Parts 1-46)",
+            "year": "2019-2024",
             "category": "Blogs",
-            "description": "Nine-part blog series on American Diversity Report advocating for renewal of multicultural education's founding vision",
+            "description": "Long-running column series exploring the 50-year intersection of diversity advocacy and free speech traditions.",
+            "awards": null,
+            "isbn": null,
+            "url": "https://americandiversityreport.com/author/cortesosei/",
+            "significance": "Comprehensive exploration of free speech and diversity intersection; foundation for upcoming book",
+            "enhanced_description": "Since 2019, Dr. Cortés has written 46 columns for American Diversity Report examining the complex relationship between diversity advocacy and free speech. Topics span hate speech, dehumanizing language, systemic racism, health equity (co-authored with Dr. Adwoa Osei), gender language evolution, Critical Race Theory debates, and the college presidents' congressional hearing on antisemitism. The series draws on his research for an upcoming book 'Speech vs. Diversity, Diversity vs. Speech' examining how these values interact in educational and institutional contexts. Many columns feature co-authors including Angela Antenore, Gary Cortés, Joseph Kahne, and Marjorie Graham-Howard.",
+            "key_columns": [
+              {"part": 46, "title": "The Art of Turning 90", "year": 2024, "url": "https://americandiversityreport.com/diversity-and-speech-no-46-the-art-of-turning-90-by-carlos-cortes/"},
+              {"part": 43, "title": "How 3 College Presidents Flunked Their Speech Midterm Exam", "year": 2024, "url": "https://americandiversityreport.com/diversity-and-speech-part-43-how-three-college-presidents-flunked-their-speech-midterm-exam-by-carlos-cortes/"},
+              {"part": 27, "title": "Training Future Psychologists Using the Lens of History", "year": 2022, "url": "https://americandiversityreport.com/diversity-and-speech-no-27-training-future-psychologists-using-the-lens-of-history-by-carlos-e-cortes-marjorie-graham-howard/"},
+              {"part": 16, "title": "Creating an Anti-Racism Vision Statement", "year": 2020, "url": "https://americandiversityreport.com/diversity-speech-part-16-creating-an-anti-racism-vision-statement-by-carlos-e-cortes/"},
+              {"part": 1, "title": "Diversity vs. Free Speech: An Invented Conflict", "year": 2019, "url": "https://americandiversityreport.com/diversity-vs-free-speech-part-1-an-invented-conflict-by-carlos-e-cortes/"}
+            ],
+            "related_themes": ["free speech", "diversity", "hate speech", "health equity", "Critical Race Theory"]
+          },
+          {
+            "title": "Renewing Diversity Series (Parts 1-11)",
+            "year": "2024-2025",
+            "category": "Blogs",
+            "description": "Eleven-part blog series advocating for renewal of multicultural education's founding vision.",
             "awards": null,
             "isbn": null,
             "url": "https://americandiversityreport.com/renewing-diversity-1-high-school-ethnic-studies-by-carlos-cortes/",
-            "significance": "Comprehensive reflection on 55+ years in diversity education"
+            "significance": "Comprehensive reflection on 57+ years in diversity education",
+            "enhanced_description": "Launched in September 2024, this ongoing series represents Cortés's most sustained recent effort to articulate his vision for the future of diversity education. Topics include California's ethnic studies requirement (which he helped shape), health equity curriculum at UC Riverside School of Medicine (co-authored with Dr. Adwoa Osei), the aftermath of George Floyd's killing, transgender inclusion debates, wrestling with historical complexity, and the inclusivity dilemma in healthcare. The series title reflects his call to 'renew' the founding principles of 1970s multicultural education rather than abandon them.",
+            "key_columns": [
+              {"part": 11, "title": "The Mysterious World of Diversity and Economics", "year": 2025, "url": "https://americandiversityreport.com/renewing-diversity-part-11-the-mysterious-world-of-diversity-and-economics-by-carlos-cortes/"},
+              {"part": 9, "title": "Rediscovering My Professional Journey", "year": 2025, "url": "https://americandiversityreport.com/renewing-diversity-part-9-rediscovering-my-professional-journey-by-carlos-cortes/"},
+              {"part": 3, "title": "We Failed George Floyd", "year": 2024, "url": "https://americandiversityreport.com/renewing-diversity-3-we-failed-george-floyd-by-carlos-cortes/"},
+              {"part": 1, "title": "High School Ethnic Studies", "year": 2024, "url": "https://americandiversityreport.com/renewing-diversity-1-high-school-ethnic-studies-by-carlos-cortes/"}
+            ],
+            "related_themes": ["multicultural education renewal", "ethnic studies", "health equity", "bridge-building"]
           },
           {
             "title": "From Conditional to Equitable Inclusion",
             "year": 2022,
             "category": "Blogs",
-            "description": "Analysis of evolution from conditional tolerance to genuine equitable inclusion in diversity work",
+            "description": "Analysis of evolution from conditional tolerance to genuine equitable inclusion in diversity work.",
             "awards": null,
             "isbn": null,
             "url": "https://americandiversityreport.com/from-conditional-to-equitable-inclusion-by-carlos-cortes/",
-            "significance": "Key articulation of bridge-building inclusion philosophy"
-          },
-          {
-            "title": "The Art of Turning 90",
-            "year": 2024,
-            "category": "Blogs",
-            "description": "Reflections on reaching 90 years old and continuing to contribute to diversity education",
-            "awards": null,
-            "isbn": null,
-            "url": "https://americandiversityreport.com/diversity-and-speech-no-46-the-art-of-turning-90-by-carlos-cortes/",
-            "significance": "Personal milestone reflection"
+            "significance": "Key articulation of bridge-building inclusion philosophy",
+            "enhanced_description": "Published in October 2022, this standalone article traces the historical arc of American inclusion efforts from grudging tolerance through conditional acceptance to genuine equitable inclusion. Cortés argues that true inclusion requires moving beyond mere 'toleration' (enduring the presence of others) to active embrace of diversity as a source of national strength. The piece articulates his philosophy of 'bridge-building inclusion' that seeks to expand the American 'we' rather than divide into opposing camps, reflecting his career-long commitment to unity across differences.",
+            "related_themes": ["inclusion", "bridge-building", "diversity philosophy", "national unity"]
           }
         ],
         "Plays": [
@@ -901,11 +918,13 @@
             "title": "Scouts' Honor",
             "year": 2025,
             "category": "Novels",
-            "description": "Mystery novel about the death of Boy Scout Harry Vincent at Camp Matulia in southwestern Missouri",
+            "description": "Mystery novel about the death of Boy Scout Harry Vincent at Camp Matulia in southwestern Missouri.",
             "awards": null,
-            "isbn": null,
-            "url": null,
-            "significance": "First novel; debut fiction work at age 91"
+            "isbn": "9781955969369",
+            "url": "https://www.amazon.com/Scouts-Honor-Carlos-Cort%C3%A9s-ebook/dp/B0F53QW6PG",
+            "significance": "First novel; debut fiction work at age 91",
+            "enhanced_description": "Published when Cortés was 91 years old, this debut novel marks his first venture into long-form fiction after a career primarily focused on academic scholarship and autobiography. Set at Boy Scout Camp Matulia in southwestern Missouri, the mystery/whodunit centers on the death of Scout Harry Vincent, with Cortés drawing inspiration from his own summer camp experience at age 14 while adding a fictional murder element. The novel was launched at the Civil Rights Institute of Inland Southern California in Riverside on August 31, 2025, and at the Maloof Foundation in Rancho Cucamonga on September 20, 2025, demonstrating that Cortés remains generatively creative well into his tenth decade.",
+            "related_themes": ["mystery", "Boy Scouts", "coming of age", "fiction debut"]
           }
         ],
         "Consulting Projects": [
@@ -913,31 +932,26 @@
             "title": "DreamWorks Animation: Puss in Boots: The Last Wish",
             "year": 2022,
             "category": "Consulting Projects",
-            "description": "Cultural consultant for critically acclaimed animated feature film",
+            "description": "Cultural consultant for critically acclaimed animated feature film.",
             "awards": null,
             "isbn": null,
-            "url": null,
-            "significance": "Continued major studio cultural consulting work"
+            "url": "https://www.dreamworks.com/movies/puss-in-boots-the-last-wish",
+            "significance": "Continued major studio cultural consulting work",
+            "enhanced_description": "Cortés served as cultural consultant for DreamWorks Animation's Academy Award-nominated sequel to 'Puss in Boots,' which was released in December 2022 to widespread critical acclaim and commercial success. The film follows the Spanish-accented feline character voiced by Antonio Banderas on a quest to restore his nine lives, featuring rich Latino cultural elements that benefited from Cortés's decades of expertise in authentic representation. This consulting role extended his pattern of media influence begun with Nickelodeon's 'Dora the Explorer' in 2000, demonstrating his continued relevance in shaping mainstream entertainment's treatment of Latino culture.",
+            "related_themes": ["Latino representation", "animation", "cultural consulting", "DreamWorks"]
           },
           {
             "title": "The Cheech Marin Center for Chicano Art & Culture: Consulting Humanist",
             "year": 2022,
             "category": "Consulting Projects",
-            "description": "Consulting Humanist for The Cheech museum in Riverside, conducting filmed conversations on Chicano art and culture",
+            "description": "Consulting Humanist for The Cheech museum in Riverside, conducting filmed conversations on Chicano art and culture.",
             "awards": null,
             "isbn": null,
-            "url": null,
+            "url": "https://www.thecheechcenter.org/",
             "significance": "Major ongoing cultural institution partnership",
-            "enhanced_description": "As Consulting Humanist for The Cheech Marin Museum of Chicano Art & Culture (opened June 2022 in Riverside), Dr. Cortés conducts filmed 'Conversations at The Cheech' exploring Chicano art and culture. His vision aligns with founder Cheech Marin's: making Chicano art everybody's art through 'mutual respect, mutual enrichment, and mutual identification'—a capacious we-ness that expands rather than excludes.",
-            "related_themes": [
-              "Chicano art",
-              "museum consulting",
-              "cultural institutions",
-              "Riverside"
-            ],
-            "corpus_sources": [
-              "dr-cortes-rag-corpus/extracted/blog_posts/"
-            ]
+            "enhanced_description": "As Consulting Humanist for The Cheech Marin Museum of Chicano Art & Culture (opened June 2022 in Riverside), Dr. Cortés conducts filmed 'Conversations at The Cheech' exploring Chicano art and culture with artists, curators, and community members. His vision aligns with founder Cheech Marin's commitment to making Chicano art 'everybody's art' through 'mutual respect, mutual enrichment, and mutual identification'—a capacious we-ness that expands rather than excludes based on heritage. The ongoing partnership brings together Riverside's most prominent diversity scholar with the nation's first museum dedicated exclusively to Chicano art, located just miles from UCR where Cortés spent his career.",
+            "related_themes": ["Chicano art", "museum consulting", "cultural institutions", "Riverside"],
+            "corpus_sources": ["dr-cortes-rag-corpus/extracted/blog_posts/"]
           }
         ],
         "Curriculum Development": [
@@ -945,50 +959,39 @@
             "title": "California Ethnic Studies Model Curriculum Principles",
             "year": 2021,
             "category": "Curriculum Development",
-            "description": "Eight curriculum principles adapted into California's Ethnic Studies Model Curriculum",
+            "description": "Eight curriculum principles adapted into California's Ethnic Studies Model Curriculum.",
             "awards": null,
             "isbn": null,
-            "url": null,
+            "url": "https://www.cde.ca.gov/ci/cr/cf/esmc.asp",
             "significance": "Contributed to AB 101, making California first state to require ethnic studies for graduation",
-            "enhanced_description": "Dr. Cortés authored eight basic curriculum principles for high school Ethnic Studies that were adapted into outcomes on pages 16-20 of California's final Model Curriculum, adopted in March 2021. This work contributed to AB 101, making California the first state to require ethnic studies for high school graduation. His principles drew on five decades of multicultural education experience and his 1970s work on the state's first textbook evaluation task force.",
-            "related_themes": [
-              "curriculum development",
-              "California education policy",
-              "high school requirements"
-            ],
-            "corpus_sources": [
-              "dr-cortes-rag-corpus/extracted/blog_posts/"
-            ]
+            "enhanced_description": "At the request of the California State Board of Education, Cortés drafted a 12-page statement of suggested principles for high school Ethnic Studies curricula designed to break an impasse over the controversial Model Curriculum, which had received 21,000 public comments with 18,000 negative. His eight principles—drawn from five decades of involvement in college ethnic studies and his 1970 work teaching UCR's first Chicano History class—were adapted by the State Department of Education into eight outcomes appearing on pages 16-20 of the final Model Curriculum, adopted in March 2021. This work directly contributed to passage of Assembly Bill 101 (the Medina Bill), making California the first state to require all high school students to complete a one-semester course in Ethnic Studies.",
+            "related_themes": ["curriculum development", "California education policy", "high school requirements", "ethnic studies"],
+            "corpus_sources": ["dr-cortes-rag-corpus/extracted/blog_posts/"]
           },
           {
             "title": "City of Riverside Anti-Racism Vision Statement",
             "year": 2020,
             "category": "Curriculum Development",
-            "description": "Two-page anti-racism vision statement for the City of Riverside",
+            "description": "Two-page anti-racism vision statement for the City of Riverside.",
             "awards": null,
             "isbn": null,
-            "url": null,
+            "url": "https://www.pe.com/2020/09/05/riverside-seeks-a-racial-reckoning/",
             "significance": "Adopted 6-1 by Riverside City Council October 20, 2020",
-            "enhanced_description": "In 2020, Dr. Cortés authored a two-page anti-racism vision statement for the City of Riverside, which was adopted 6-1 by the City Council on October 20, 2020. This built on his earlier work drafting 'Building a More Inclusive Riverside Community' (2001) for Mayor Ronald Loveridge's Multicultural Forum, which established inclusivity as a basic city principle.",
-            "related_themes": [
-              "civic engagement",
-              "anti-racism",
-              "local government",
-              "Riverside"
-            ],
-            "corpus_sources": [
-              "dr-cortes-rag-corpus/extracted/blog_posts/"
-            ]
+            "enhanced_description": "Coordinating the work of the Mayor's Multicultural Forum after the 2020 Minneapolis police killing of George Floyd, Cortés led development of a two-page anti-racism vision statement for the City of Riverside that was adopted 6-1 by City Council on October 20, 2020. The creation process exemplified his commitment to transparent, community-inclusive methods—drafts were circulated to approximately 100 community members with requests for feedback within five days, and Cortés insisted on brief, direct, accessible language with section headings followed by bullet points rather than dense academic jargon. The statement received extensive newspaper coverage, including a Los Angeles Times front-page feature headlined 'Riverside seeks a racial reckoning,' demonstrating public appetite for clear, community-based anti-racism work.",
+            "related_themes": ["civic engagement", "anti-racism", "local government", "Riverside"],
+            "corpus_sources": ["dr-cortes-rag-corpus/extracted/blog_posts/"]
           },
           {
-            "title": "Health Equity Curriculum Development",
+            "title": "UC Riverside Health Equity, Social Justice, and Anti-Racism (HESJAR) Curriculum",
             "year": 2020,
             "category": "Curriculum Development",
-            "description": "Consulting on health equity curriculum addressing disparities in healthcare access and outcomes",
+            "description": "Co-director of pioneering medical school curriculum on health equity and anti-racism.",
             "awards": null,
             "isbn": null,
-            "url": null,
-            "significance": "Applied diversity expertise to healthcare education"
+            "url": "https://medschool.ucr.edu/",
+            "significance": "First curriculum of its kind at a UC medical school",
+            "enhanced_description": "Since July 2020, Cortés has served as inaugural co-director (with Dr. Adwoa Osei) of the UC Riverside School of Medicine's Health Equity, Social Justice, and Anti-Racism (HESJAR) curricular initiative, bringing his 50+ years of diversity education expertise to medical education. The curriculum addresses how healthcare providers can recognize and address structural inequities affecting patient outcomes, train future physicians to provide culturally competent care, and understand the historical roots of health disparities. Their collaborative work has been documented in multiple 'Renewing Diversity' columns and represents a late-career expansion of Cortés's influence into healthcare education.",
+            "related_themes": ["health equity", "medical education", "anti-racism", "UCR School of Medicine"]
           }
         ],
         "Awards Received": [
