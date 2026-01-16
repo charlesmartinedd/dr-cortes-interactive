@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Carlos E. Cortés AI Chatbot - Safety & Legal Protection Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1628;
+            --navy-light: #1a2a42;
+            --gold: #D4A853;
+            --gold-light: #E8C882;
+            --off-white: #FAFAF8;
+            --gray-100: #F5F5F3;
+            --gray-200: #E8E8E4;
+            --gray-400: #A0A0A0;
+            --gray-600: #666666;
+            --success: #2E7D4A;
+            --danger: #C53030;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--off-white);
+            color: var(--navy);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 80px 24px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A853' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 168, 83, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .hero h1 {
+            color: var(--off-white);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 16px;
+            animation: fadeInDown 0.6s ease-out 0.1s both;
+        }
+
+        .hero-subtitle {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 500;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.6s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            color: var(--gray-200);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInDown 0.6s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 168, 83, 0.3);
+        }
+
+        .cta-button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover svg {
+            transform: translateY(3px);
+        }
+
+        /* Cards Section */
+        .cards-section {
+            max-width: 1200px;
+            margin: -50px auto 60px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(10, 22, 40, 0.08);
+            border: 1px solid transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.5s; }
+        .card:nth-child(2) { animation-delay: 0.6s; }
+        .card:nth-child(3) { animation-delay: 0.7s; }
+        .card:nth-child(4) { animation-delay: 0.8s; }
+        .card:nth-child(5) { animation-delay: 0.9s; }
+        .card:nth-child(6) { animation-delay: 1.0s; }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(10, 22, 40, 0.15);
+            border-color: var(--gold);
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--gold);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .card-arrow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 32px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(212, 168, 83, 0.15);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--gold);
+        }
+
+        .modal-header h2 {
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+        }
+
+        .modal-header p {
+            color: var(--gray-200);
+            font-size: 1rem;
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-section {
+            margin-bottom: 28px;
+        }
+
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .section-label.risk {
+            background: rgba(197, 48, 48, 0.1);
+            color: var(--danger);
+        }
+
+        .section-label.protection {
+            background: rgba(46, 125, 74, 0.1);
+            color: var(--success);
+        }
+
+        .section-label.sample {
+            background: rgba(212, 168, 83, 0.15);
+            color: #B8942F;
+        }
+
+        .section-label.checklist {
+            background: rgba(10, 22, 40, 0.08);
+            color: var(--navy);
+        }
+
+        .modal-section h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--navy);
+        }
+
+        .modal-section p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .sample-box {
+            background: var(--gray-100);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: var(--navy);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: rgba(46, 125, 74, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .check-icon svg {
+            width: 12px;
+            height: 12px;
+            color: var(--success);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy);
+            padding: 48px 24px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-disclaimer {
+            color: var(--gray-400);
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .footer-meta {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-meta span {
+            color: var(--gray-400);
+            font-size: 0.8rem;
+        }
+
+        .footer-meta a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer-meta a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scrollbar */
+        .modal::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background: var(--gray-400);
+            border-radius: 4px;
+        }
+
+        .modal::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-600);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">California AI Compliant</div>
+            <h1>Dr. Carlos E. Cortés AI Chatbot</h1>
+            <p class="hero-subtitle">Safety & Legal Protection Framework</p>
+            <p class="hero-description">
+                Comprehensive safeguards protecting users, your professional reputation,
+                and ensuring full compliance with California AI regulations including SB 243.
+            </p>
+            <a href="#protections" class="cta-button">
+                Explore Protections
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section id="protections" class="cards-section">
+        <div class="cards-grid">
+            <!-- Card 1: AI Disclosure -->
+            <div class="card" onclick="openModal('ai-disclosure')">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
+                        <circle cx="12" cy="12" r="4"/>
+                    </svg>
+                </div>
+                <h3>AI Disclosure</h3>
+                <p>Clear, prominent disclosure that users are interacting with an AI system, meeting California's transparency requirements.</p>
+                <div class="card-arrow">
+                    View Details
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 2: Crisis Protocol -->
+            <div class="card" onclick="openModal('crisis-protocol')">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <h3>Crisis Protocol</h3>
+                <p>Automated detection of mental health crises with immediate 988 Suicide & Crisis Lifeline referral, per SB 243 requirements.</p>
+                <div class="card-arrow">
+                    View Details
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 3: Professional Advice Refusal -->
+            <div class="card" onclick="openModal('advice-refusal')">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+                    </svg>
+                </div>
+                <h3>Professional Advice Refusal</h3>
+                <p>Firm guardrails preventing the AI from offering legal, medical, financial, or psychological advice.</p>
+                <div class="card-arrow">
+                    View Details
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 4: Topic Boundaries -->
+            <div class="card" onclick="openModal('topic-boundaries')">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </div>
+                <h3>Topic Boundaries</h3>
+                <p>Strict subject-matter limits focused on Dr. Cortés's scholarly work, preventing discussion of unrelated or controversial topics.</p>
+                <div class="card-arrow">
+                    View Details
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 5: Security Guardrails -->
+            <div class="card" onclick="openModal('security-guardrails')">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h3>Security Guardrails</h3>
+                <p>Multi-layer protection against prompt injection, jailbreaking attempts, and AI manipulation tactics.</p>
+                <div class="card-arrow">
+                    View Details
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 6: Legal Compliance -->
+            <div class="card" onclick="openModal('legal-compliance')">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                </div>
+                <h3>Legal Compliance</h3>
+                <p>Full California SB 243 compliance with Terms of Service, liability disclaimers, and user acknowledgment systems.</p>
+                <div class="card-arrow">
+                    View Details
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-disclaimer">
+                This documentation describes the safety and legal protection framework for the Dr. Carlos E. Cortés AI Chatbot.
+                The chatbot is an educational tool designed to share information about Dr. Cortés's scholarly contributions and does not
+                provide professional advice of any kind. This framework is designed to meet California AI transparency and safety
+                requirements, including SB 243 (effective January 1, 2025).
+            </p>
+            <div class="footer-meta">
+                <span>Document Version 1.0</span>
+                <span>Last Updated: January 2026</span>
+                <span><a href="#">Terms of Service</a></span>
+                <span><a href="#">Privacy Policy</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+        <div class="modal" id="modal">
+            <!-- Modal content inserted dynamically -->
+        </div>
+    </div>
+
+    <script>
+        // Modal content data
+        const modalData = {
+            'ai-disclosure': {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
+                    <circle cx="12" cy="12" r="4"/>
+                </svg>`,
+                title: 'AI Disclosure',
+                subtitle: 'California AI Transparency Compliance',
+                risk: {
+                    title: 'Legal Risk',
+                    content: 'California law requires clear disclosure when users interact with AI systems. Failure to disclose can result in regulatory action, consumer complaints, and potential legal liability under consumer protection statutes. Users may claim they were deceived into believing they were speaking with a human or with Dr. Cortés directly.'
+                },
+                protection: {
+                    title: 'Protection Implemented',
+                    content: 'The chatbot displays a prominent, persistent notice identifying itself as an AI assistant. This disclosure appears immediately upon interaction and cannot be dismissed or hidden. The system explicitly states it is not Dr. Cortés and cannot speak on his behalf for new matters.'
+                },
+                sample: '"I am an AI assistant created to share information about Dr. Carlos E. Cortés\'s published works and scholarly contributions. I am not Dr. Cortés himself, and my responses are based on his documented writings and public presentations. I cannot provide new opinions, interpretations, or statements on his behalf."',
+                checklist: [
+                    'Disclosure appears before first interaction',
+                    'AI nature is stated explicitly, not implied',
+                    'Distinction between AI and Dr. Cortés is clear',
+                    'Disclosure persists throughout conversation',
+                    'Cannot be easily overlooked or bypassed'
+                ]
+            },
+            'crisis-protocol': {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>`,
+                title: 'Crisis Protocol',
+                subtitle: 'SB 243 Mental Health Safety Requirements',
+                risk: {
+                    title: 'Legal Risk',
+                    content: 'California SB 243 (effective January 1, 2025) mandates that AI chatbots capable of discussing mental health topics must detect crisis indicators and provide immediate referral to the 988 Suicide & Crisis Lifeline. Non-compliance exposes operators to significant legal liability, especially if harm occurs and the chatbot failed to provide required resources.'
+                },
+                protection: {
+                    title: 'Protection Implemented',
+                    content: 'The system includes real-time detection of crisis-related language patterns. When triggered, the chatbot immediately pauses normal conversation, acknowledges the seriousness of the situation, provides the 988 Lifeline number and encourages the user to call, and offers additional crisis resources. The system logs these interactions for safety review.'
+                },
+                sample: '"I\'m concerned about what you\'ve shared. If you\'re having thoughts of suicide or self-harm, please reach out for support right now. Call or text 988 to reach the Suicide & Crisis Lifeline—they\'re available 24/7 and ready to help. You can also text HOME to 741741 to reach the Crisis Text Line. You don\'t have to face this alone."',
+                checklist: [
+                    'Detection of suicidal ideation keywords',
+                    'Detection of self-harm indicators',
+                    '988 Lifeline prominently displayed',
+                    'Alternative crisis resources provided',
+                    'Normal AI responses paused during crisis',
+                    'Empathetic, non-judgmental language used'
+                ]
+            },
+            'advice-refusal': {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+                </svg>`,
+                title: 'Professional Advice Refusal',
+                subtitle: 'Malpractice & Liability Protection',
+                risk: {
+                    title: 'Legal Risk',
+                    content: 'Providing professional advice (legal, medical, financial, psychological, or immigration-related) without proper licensing exposes the operator to malpractice claims, unauthorized practice of law/medicine allegations, and liability if users rely on AI-generated advice to their detriment. Even appearing to give advice could create implied duty-of-care obligations.'
+                },
+                protection: {
+                    title: 'Protection Implemented',
+                    content: 'The chatbot is programmed to recognize requests for professional advice and firmly decline while redirecting users to qualified professionals. This applies to personal legal situations, medical/health decisions, financial planning, psychological counseling, and immigration guidance. The refusal is polite but unambiguous.'
+                },
+                sample: '"I appreciate your trust, but I\'m not able to provide advice on your specific legal situation. As an AI, I can share what Dr. Cortés has written about immigration policy as a historical and social phenomenon, but for guidance on your personal case, please consult with a licensed immigration attorney who can review your specific circumstances."',
+                checklist: [
+                    'Detection of personal advice-seeking patterns',
+                    'Clear refusal for legal advice requests',
+                    'Clear refusal for medical/health advice',
+                    'Clear refusal for financial advice',
+                    'Clear refusal for psychological counseling',
+                    'Redirect to qualified professionals',
+                    'Disclaimer that AI cannot substitute for experts'
+                ]
+            },
+            'topic-boundaries': {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>`,
+                title: 'Topic Boundaries',
+                subtitle: 'Reputation & Defamation Protection',
+                risk: {
+                    title: 'Legal Risk',
+                    content: 'An AI speaking "as" or "for" a public figure could generate statements that misrepresent their views, damage their reputation, or create controversy. Discussing topics outside the scholar\'s documented work risks putting words in their mouth, potentially exposing both the operator and Dr. Cortés to defamation claims, reputational harm, or public embarrassment.'
+                },
+                protection: {
+                    title: 'Protection Implemented',
+                    content: 'The chatbot maintains strict subject-matter boundaries, only discussing topics covered in Dr. Cortés\'s published works, books, articles, and documented presentations. It refuses to speculate, offer opinions on current events, comment on other public figures, discuss personal details, or venture into areas where Dr. Cortés has not publicly expressed views.'
+                },
+                sample: '"I focus specifically on Dr. Cortés\'s scholarly work in media literacy, multicultural education, and diversity history. I\'m not able to share opinions on current political events or topics he hasn\'t addressed in his published work. Is there something specific from his books or articles I can help you explore?"',
+                checklist: [
+                    'Topic scope limited to published works',
+                    'Refusal to comment on current events',
+                    'Refusal to discuss personal life details',
+                    'Refusal to speculate on unpublished views',
+                    'Refusal to comment on other individuals',
+                    'Redirect to documented scholarly content',
+                    'Clear explanation of scope limitations'
+                ]
+            },
+            'security-guardrails': {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>`,
+                title: 'Security Guardrails',
+                subtitle: 'AI Manipulation Prevention',
+                risk: {
+                    title: 'Legal Risk',
+                    content: 'Malicious actors may attempt to manipulate the AI through prompt injection, jailbreaking, or social engineering to bypass safety measures, extract harmful content, or make the chatbot behave in unintended ways. A compromised chatbot could generate content that damages Dr. Cortés\'s reputation, provides harmful information, or violates the law.'
+                },
+                protection: {
+                    title: 'Protection Implemented',
+                    content: 'The system employs multiple layers of security including detection of manipulation attempts, resistance to role-play scenarios that bypass restrictions, rejection of commands to "ignore previous instructions," and maintenance of core identity regardless of user prompts. The chatbot treats all user input as potentially adversarial and validates against its core mission.'
+                },
+                sample: '"I\'m designed to be helpful within my defined purpose—sharing information about Dr. Cortés\'s scholarly work. I can\'t take on different roles, ignore my guidelines, or pretend to be something I\'m not. Is there something about Dr. Cortés\'s research I can help you with?"',
+                checklist: [
+                    'Detection of prompt injection attempts',
+                    'Resistance to "ignore instructions" commands',
+                    'Refusal of role-play that bypasses limits',
+                    'Consistent identity maintenance',
+                    'Rejection of attempts to extract system prompts',
+                    'Logging of suspicious interaction patterns',
+                    'Graceful handling without revealing vulnerabilities'
+                ]
+            },
+            'legal-compliance': {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>`,
+                title: 'Legal Compliance',
+                subtitle: 'SB 243 & Regulatory Framework',
+                risk: {
+                    title: 'Legal Risk',
+                    content: 'California SB 243 establishes specific requirements for AI chatbots, including disclosure obligations, crisis intervention capabilities, and user safety provisions. Non-compliance can result in regulatory enforcement, civil liability, and reputational damage. Additionally, standard legal protections (Terms of Service, disclaimers) must be in place to limit liability exposure.'
+                },
+                protection: {
+                    title: 'Protection Implemented',
+                    content: 'The chatbot framework includes comprehensive legal documentation: Terms of Service that users must acknowledge, liability disclaimers for AI-generated content, privacy policy regarding conversation data, and explicit statements about the chatbot\'s limitations. The system is designed to meet or exceed all SB 243 requirements effective January 1, 2025.'
+                },
+                sample: '"By using this chatbot, you acknowledge that: (1) This is an AI system, not Dr. Cortés himself; (2) Responses are for educational purposes only and do not constitute professional advice; (3) The AI may make errors or produce incomplete information; (4) You should verify important information through primary sources; (5) Your use is subject to our Terms of Service and Privacy Policy."',
+                checklist: [
+                    'SB 243 AI disclosure requirements met',
+                    'SB 243 crisis intervention compliant',
+                    'Terms of Service in place',
+                    'Liability disclaimer for AI content',
+                    'Privacy policy for conversation data',
+                    'User acknowledgment mechanism',
+                    'Educational-use-only statements',
+                    'Error and limitation disclosures',
+                    'Primary source verification encouragement'
+                ]
+            }
+        };
+
+        function openModal(id) {
+            const data = modalData[id];
+            const modal = document.getElementById('modal');
+
+            let checklistHTML = data.checklist.map(item => `
+                <li>
+                    <span class="check-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </span>
+                    ${item}
+                </li>
+            `).join('');
+
+            modal.innerHTML = `
+                <div class="modal-header">
+                    <button class="modal-close" onclick="closeModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                    <div class="modal-icon">${data.icon}</div>
+                    <h2>${data.title}</h2>
+                    <p>${data.subtitle}</p>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <span class="section-label risk">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            Legal Risk
+                        </span>
+                        <p>${data.risk.content}</p>
+                    </div>
+                    <div class="modal-section">
+                        <span class="section-label protection">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                            Protection Implemented
+                        </span>
+                        <p>${data.protection.content}</p>
+                    </div>
+                    <div class="modal-section">
+                        <span class="section-label sample">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 7 4 4 20 4 20 7"/>
+                                <line x1="9" y1="20" x2="15" y2="20"/>
+                                <line x1="12" y1="4" x2="12" y2="20"/>
+                            </svg>
+                            Sample Language
+                        </span>
+                        <div class="sample-box">${data.sample}</div>
+                    </div>
+                    <div class="modal-section">
+                        <span class="section-label checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                            Compliance Checklist
+                        </span>
+                        <ul class="checklist">${checklistHTML}</ul>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modal-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target === document.getElementById('modal-overlay')) {
+                closeModal();
+            }
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Smooth scroll for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('protections').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    </script>
+</body>
+</html>
