@@ -219,11 +219,23 @@ class TimelineRenderer {
         group.appendChild(text);
         group.appendChild(theme);
 
-        // Click scrolls to vertical narrative decade
+        // Click scrolls to vertical narrative decade and narrates it
         group.addEventListener('click', () => {
             const target = document.getElementById(`decade-${decade.key}`);
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Interrupt current narration and play clicked decade
+                if (window.narrator && window.narrator.enabled) {
+                    window.narrator.narrated.add(decade.key);
+                    const intro = (currentLang !== 'en' && DECADE_INTROS_I18N[currentLang]?.[decade.key])
+                        ? DECADE_INTROS_I18N[currentLang][decade.key]
+                        : DECADE_INTROS[decade.key];
+                    if (intro) {
+                        window.narrator.stopCurrent();
+                        window.narrator.playNarration(intro);
+                    }
+                }
             }
         });
 
@@ -245,8 +257,10 @@ class NarrativeTimeline {
         this.container = container;
     }
 
-    render() {
+    render(lang) {
         if (!state.data?.decades) return;
+        lang = lang || 'en';
+        const translations = getEntryTranslations(lang);
 
         const decades = state.data.decades;
         const html = [];
@@ -256,25 +270,35 @@ class NarrativeTimeline {
             if (!decadeData) continue;
 
             const entries = decadeData.entries || [];
-            const intro = DECADE_INTROS[decadeConfig.key] || '';
+            // Use translated intro/theme if available
+            const intro = (lang !== 'en' && DECADE_INTROS_I18N[lang]?.[decadeConfig.key])
+                ? DECADE_INTROS_I18N[lang][decadeConfig.key]
+                : (DECADE_INTROS[decadeConfig.key] || '');
+            const theme = (lang !== 'en' && DECADE_THEMES_I18N[lang]?.[decadeConfig.key])
+                ? DECADE_THEMES_I18N[lang][decadeConfig.key]
+                : decadeConfig.theme;
 
             html.push(`
                 <div id="decade-${decadeConfig.key}" class="decade-block">
                     <div class="decade-header scroll-reveal">
                         <h2>${decadeConfig.key}</h2>
-                        <p class="decade-theme">"${decadeConfig.theme}"</p>
+                        <p class="decade-theme">"${theme}"</p>
                         <p class="decade-intro">${intro}</p>
                     </div>
                     <div class="vertical-timeline">
-                        ${entries.map(entry => `
+                        ${entries.map(entry => {
+                            const t = translations[entry.title];
+                            const title = t?.title || entry.title;
+                            const desc = t?.desc || entry.description || '';
+                            return `
                             <div class="timeline-entry scroll-reveal">
                                 <div class="entry-year">${entry.year}</div>
                                 <div class="entry-card">
-                                    <h3>${entry.title}</h3>
-                                    <p>${entry.description || ''}</p>
+                                    <h3>${title}</h3>
+                                    <p>${desc}</p>
                                 </div>
                             </div>
-                        `).join('')}
+                        `;}).join('')}
                     </div>
                 </div>
             `);
@@ -378,16 +402,6 @@ class TimelineNarrator {
             }
         });
 
-        this.audio.addEventListener('ended', () => {
-            this.isPlaying = false;
-            this.indicator.classList.remove('active');
-            // Play next in queue if any
-            if (this.queue.length > 0) {
-                const next = this.queue.shift();
-                this.playNarration(next);
-            }
-        });
-
         // Observe decade headers
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -395,13 +409,13 @@ class TimelineNarrator {
                     const decade = entry.target.closest('.decade-block')?.id?.replace('decade-', '');
                     if (decade && !this.narrated.has(decade) && this.enabled) {
                         this.narrated.add(decade);
-                        const intro = DECADE_INTROS[decade];
+                        const intro = (currentLang !== 'en' && DECADE_INTROS_I18N[currentLang]?.[decade])
+                            ? DECADE_INTROS_I18N[currentLang][decade]
+                            : DECADE_INTROS[decade];
                         if (intro) {
-                            if (this.isPlaying) {
-                                this.queue.push(intro);
-                            } else {
-                                this.playNarration(intro);
-                            }
+                            // Interrupt current narration and start the new one
+                            this.stopCurrent();
+                            this.playNarration(intro);
                         }
                     }
                 }
@@ -414,6 +428,44 @@ class TimelineNarrator {
         document.querySelectorAll('.decade-header').forEach(header => {
             observer.observe(header);
         });
+    }
+
+    stopCurrent() {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        this.isPlaying = false;
+        this.queue = [];
+        this.indicator?.classList.remove('active');
+    }
+
+    // Find the decade header currently most visible and narrate it
+    narrateVisibleDecade() {
+        if (!this.enabled) return;
+        const headers = document.querySelectorAll('.decade-header');
+        let best = null;
+        let bestRatio = 0;
+        headers.forEach(header => {
+            const rect = header.getBoundingClientRect();
+            const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+            const ratio = visible / rect.height;
+            if (ratio > bestRatio) {
+                bestRatio = ratio;
+                best = header;
+            }
+        });
+        if (best && bestRatio > 0.2) {
+            const decade = best.closest('.decade-block')?.id?.replace('decade-', '');
+            if (decade) {
+                this.narrated.add(decade);
+                const intro = (currentLang !== 'en' && DECADE_INTROS_I18N[currentLang]?.[decade])
+                    ? DECADE_INTROS_I18N[currentLang][decade]
+                    : DECADE_INTROS[decade];
+                if (intro) {
+                    this.stopCurrent();
+                    this.playNarration(intro);
+                }
+            }
+        }
     }
 
     async playNarration(text) {
@@ -463,31 +515,43 @@ class TimelineNarrator {
 
 // ========== SELECTED WORKS RENDERER ==========
 class WorksRenderer {
-    renderPublications(container) {
+    renderPublications(container, lang) {
         if (!state.data?.decades) return;
+        lang = lang || 'en';
+        const translations = getEntryTranslations(lang);
 
         const allWorks = dataLoader.getAllWorks();
 
-        container.innerHTML = allWorks.map(work => `
+        container.innerHTML = allWorks.map(work => {
+            const t = translations[work.title];
+            const title = t?.title || work.title;
+            const desc = t?.desc || work.description || '';
+            return `
             <div class="publication-card scroll-reveal">
                 <div class="publication-year">${work.year}</div>
-                <div class="publication-title">${work.title}</div>
-                <div class="publication-desc">${work.description || ''}</div>
+                <div class="publication-title">${title}</div>
+                <div class="publication-desc">${desc}</div>
             </div>
-        `).join('');
+        `;}).join('');
     }
 
-    renderAwards(container) {
+    renderAwards(container, lang) {
         const awards = state.data?.biography?.awards;
         if (!awards) return;
+        lang = lang || 'en';
+        const translations = getEntryTranslations(lang);
 
-        container.innerHTML = awards.map(award => `
+        container.innerHTML = awards.map(award => {
+            const t = translations[award.award];
+            const name = t?.title || award.award;
+            const desc = t?.desc || award.description;
+            return `
             <div class="award-card scroll-reveal">
                 <div class="award-card-year">${award.year}</div>
-                <div class="award-card-name">${award.award}</div>
-                <div class="award-card-desc">${award.description}</div>
+                <div class="award-card-name">${name}</div>
+                <div class="award-card-desc">${desc}</div>
             </div>
-        `).join('');
+        `;}).join('');
     }
 }
 
@@ -595,54 +659,136 @@ function setupThemeToggle() {
 // ========== INTERNATIONALIZATION ==========
 const I18N = {
     en: {
+        // Nav
+        nav_home: 'Home', nav_timeline: 'Timeline', nav_story: 'Story', nav_ask: 'Ask', nav_works: 'Works',
+        loading: 'Loading Timeline...',
+        // Hero
         hero_hook: 'We live in a world shaped by how we understand each other.',
         hero_subtitle: 'This is the story of one man who spent seven decades building bridges.',
-        stat_years: 'Years',
-        stat_milestones: 'Milestones',
-        stat_decades: 'Decades',
+        stat_years: 'Years', stat_milestones: 'Milestones', stat_decades: 'Decades',
         scroll_explore: 'Scroll to explore',
+        // Timeline
         timeline_intro: "You're about to travel through 70 years of scholarship, storytelling, and bridge-building.",
+        // Ask
         ask_title: 'Ask Dr. Cort\u00e9s',
         ask_subtitle: "Have a question about equity, curriculum design, or ethnic studies? I've spent my career in conversation \u2014 let's continue it here.",
+        chat_status: 'Ready to chat',
+        chat_welcome: 'Start a conversation with Dr. Cort\u00e9s about his life\'s work in multicultural education.',
+        chat_placeholder: 'Ask Dr. Cort\u00e9s a question...',
+        reconnect: 'Reconnect',
+        // Prompts
+        prompt_1: 'What inspired your work?', prompt_1_full: 'What inspired your work in multicultural education?',
+        prompt_2: 'Tell me about Dora', prompt_2_full: 'Tell me about your experience with Dora the Explorer at Nickelodeon.',
+        prompt_3: 'Growing up interracial', prompt_3_full: 'What was it like growing up in an interracial family in the 1940s?',
+        prompt_4: 'Societal curriculum', prompt_4_full: 'What is the societal curriculum and why does it matter?',
+        // Works
         works_title: 'Complete Works & Recognition',
         works_intro: '85 milestones across seven decades of learning to live together.',
         awards_title: 'Awards & Honors',
-        chat_status: 'Ready to chat',
-        reconnect: 'Reconnect'
+        // Search
+        search_placeholder: 'Search by title, category, year...',
+        search_hint: 'Type at least 2 characters to search...',
+        search_no_results: 'No results found.'
     },
     es: {
+        nav_home: 'Inicio', nav_timeline: 'Cronolog\u00eda', nav_story: 'Historia', nav_ask: 'Preguntar', nav_works: 'Obras',
+        loading: 'Cargando cronolog\u00eda...',
         hero_hook: 'Vivimos en un mundo moldeado por c\u00f3mo nos entendemos unos a otros.',
         hero_subtitle: 'Esta es la historia de un hombre que pas\u00f3 siete d\u00e9cadas construyendo puentes.',
-        stat_years: 'A\u00f1os',
-        stat_milestones: 'Hitos',
-        stat_decades: 'D\u00e9cadas',
+        stat_years: 'A\u00f1os', stat_milestones: 'Hitos', stat_decades: 'D\u00e9cadas',
         scroll_explore: 'Despl\u00e1zate para explorar',
         timeline_intro: 'Est\u00e1s a punto de recorrer 70 a\u00f1os de erudici\u00f3n, narraci\u00f3n y construcci\u00f3n de puentes.',
         ask_title: 'Preg\u00fantale al Dr. Cort\u00e9s',
         ask_subtitle: '\u00bfTienes una pregunta sobre equidad, dise\u00f1o curricular o estudios \u00e9tnicos? He pasado mi carrera en conversaci\u00f3n \u2014 contin\u00faemosla aqu\u00ed.',
+        chat_status: 'Listo para chatear',
+        chat_welcome: 'Inicia una conversaci\u00f3n con el Dr. Cort\u00e9s sobre su obra en educaci\u00f3n multicultural.',
+        chat_placeholder: 'Hazle una pregunta al Dr. Cort\u00e9s...',
+        reconnect: 'Reconectar',
+        prompt_1: '\u00bfQu\u00e9 inspir\u00f3 su trabajo?', prompt_1_full: '\u00bfQu\u00e9 inspir\u00f3 su trabajo en educaci\u00f3n multicultural?',
+        prompt_2: 'Cu\u00e9nteme sobre Dora', prompt_2_full: 'Cu\u00e9nteme sobre su experiencia con Dora la Exploradora en Nickelodeon.',
+        prompt_3: 'Crecer interracial', prompt_3_full: '\u00bfC\u00f3mo fue crecer en una familia interracial en los a\u00f1os 40?',
+        prompt_4: 'Curr\u00edculo social', prompt_4_full: '\u00bfQu\u00e9 es el curr\u00edculo social y por qu\u00e9 es importante?',
         works_title: 'Obras Completas y Reconocimientos',
         works_intro: '85 hitos a lo largo de siete d\u00e9cadas de aprender a vivir juntos.',
         awards_title: 'Premios y Honores',
-        chat_status: 'Listo para chatear',
-        reconnect: 'Reconectar'
+        search_placeholder: 'Buscar por t\u00edtulo, categor\u00eda, a\u00f1o...',
+        search_hint: 'Escribe al menos 2 caracteres para buscar...',
+        search_no_results: 'No se encontraron resultados.'
     },
     pt: {
+        nav_home: 'In\u00edcio', nav_timeline: 'Cronologia', nav_story: 'Hist\u00f3ria', nav_ask: 'Perguntar', nav_works: 'Obras',
+        loading: 'Carregando cronologia...',
         hero_hook: 'Vivemos em um mundo moldado por como nos entendemos.',
         hero_subtitle: 'Esta \u00e9 a hist\u00f3ria de um homem que passou sete d\u00e9cadas construindo pontes.',
-        stat_years: 'Anos',
-        stat_milestones: 'Marcos',
-        stat_decades: 'D\u00e9cadas',
+        stat_years: 'Anos', stat_milestones: 'Marcos', stat_decades: 'D\u00e9cadas',
         scroll_explore: 'Role para explorar',
         timeline_intro: 'Voc\u00ea est\u00e1 prestes a percorrer 70 anos de erudi\u00e7\u00e3o, narrativa e constru\u00e7\u00e3o de pontes.',
         ask_title: 'Pergunte ao Dr. Cort\u00e9s',
         ask_subtitle: 'Tem uma pergunta sobre equidade, design curricular ou estudos \u00e9tnicos? Passei minha carreira em conversa\u00e7\u00e3o \u2014 vamos continu\u00e1-la aqui.',
+        chat_status: 'Pronto para conversar',
+        chat_welcome: 'Inicie uma conversa com o Dr. Cort\u00e9s sobre sua obra em educa\u00e7\u00e3o multicultural.',
+        chat_placeholder: 'Fa\u00e7a uma pergunta ao Dr. Cort\u00e9s...',
+        reconnect: 'Reconectar',
+        prompt_1: 'O que inspirou seu trabalho?', prompt_1_full: 'O que inspirou seu trabalho em educa\u00e7\u00e3o multicultural?',
+        prompt_2: 'Conte-me sobre Dora', prompt_2_full: 'Conte-me sobre sua experi\u00eancia com Dora a Aventureira na Nickelodeon.',
+        prompt_3: 'Crescer inter-racial', prompt_3_full: 'Como foi crescer em uma fam\u00edlia inter-racial nos anos 1940?',
+        prompt_4: 'Curr\u00edculo social', prompt_4_full: 'O que \u00e9 o curr\u00edculo social e por que \u00e9 importante?',
         works_title: 'Obras Completas e Reconhecimento',
         works_intro: '85 marcos ao longo de sete d\u00e9cadas de aprendizado sobre viver juntos.',
         awards_title: 'Pr\u00eamios e Honras',
-        chat_status: 'Pronto para conversar',
-        reconnect: 'Reconectar'
+        search_placeholder: 'Buscar por t\u00edtulo, categoria, ano...',
+        search_hint: 'Digite pelo menos 2 caracteres para buscar...',
+        search_no_results: 'Nenhum resultado encontrado.'
     }
 };
+
+// Decade themes translated
+const DECADE_THEMES_I18N = {
+    es: {
+        '1950s': 'El Camino a Riverside', '1960s': 'Convirti\u00e9ndose en Historiador',
+        '1970s': 'Entrando en la Educaci\u00f3n K-12', '1980s': 'El Multiculturalista Todoterreno',
+        '1990s': 'El Adjunto de Todos', '2000s': 'Se Levanta el Tel\u00f3n',
+        '2010s': 'Cerrando Ciclos', '2020s': 'Tiempo Zombie'
+    },
+    pt: {
+        '1950s': 'O Caminho para Riverside', '1960s': 'Tornando-se Historiador',
+        '1970s': 'Entrando na Educa\u00e7\u00e3o K-12', '1980s': 'O Multiculturalista Vers\u00e1til',
+        '1990s': 'O Adjunto de Todos', '2000s': 'Abre-se a Cortina',
+        '2010s': 'Desacelerando', '2020s': 'Tempo Zumbi'
+    }
+};
+
+// Decade intros translated
+const DECADE_INTROS_I18N = {
+    es: {
+        '1950s': 'En la Am\u00e9rica de posguerra, un joven de Kansas City emprendi\u00f3 un camino que moldear\u00eda la forma en que una naci\u00f3n piensa sobre la diversidad. De UC Berkeley a la Escuela de Periodismo de Columbia, del servicio militar a una redacci\u00f3n en Phoenix \u2014 cada paso fue preparaci\u00f3n para el camino que ven\u00eda.',
+        '1960s': 'Se podr\u00eda decir que los sesenta convirtieron a Carlos Cort\u00e9s en historiador. Una beca de la Fundaci\u00f3n Ford lo llev\u00f3 a Brasil. Un doctorado de Nuevo M\u00e9xico le dio las herramientas. Y en 1968, UC Riverside le dio un escenario que durar\u00eda cincuenta y siete a\u00f1os.',
+        '1970s': 'El aula se expandi\u00f3. Un cap\u00edtulo en el libro de James Banks lanz\u00f3 una carrera como conferencista nacional. Series de reimpresiones preservaron voces que los libros de texto ignoraban. Y surgi\u00f3 una nueva idea: que la sociedad misma es un curr\u00edculo, ense\u00f1ando lecciones que ninguna escuela planific\u00f3.',
+        '1980s': 'Para entonces, el mundo llamaba. PBS quer\u00eda documentales. Harvard quer\u00eda conferencias. Jap\u00f3n quer\u00eda perspectiva. El Premio Distinguido Humanista de California en 1980 se\u00f1al\u00f3 lo que todos ya sab\u00edan: Carlos Cort\u00e9s se hab\u00eda convertido en el multiculturalista todoterreno.',
+        '1990s': 'Me jubil\u00e9 anticipadamente de la UC en 1994 \u2014 y entonces comenz\u00f3 el verdadero trabajo. Institutos de verano en Harvard, el Instituto Federal Ejecutivo, universidades australianas y el Foro Multicultural del Alcalde de Riverside. La jubilaci\u00f3n era solo una palabra.',
+        '2000s': 'Descubr\u00ed que la televisi\u00f3n infantil pod\u00eda llegar a millones. Cuando Nickelodeon me pidi\u00f3 asesorar en Dora la Exploradora, vi una oportunidad de moldear c\u00f3mo toda una generaci\u00f3n entend\u00eda la diferencia cultural. El Premio NAACP Image en 2009 confirm\u00f3 que el trabajo importaba.',
+        '2010s': 'Lo llamaron "Cerrando Ciclos", pero yo no hab\u00eda terminado. Una memoria sobre crecer interracial. Una enciclopedia de cuatro vol\u00famenes. Una ciudad que nombr\u00f3 un premio en mi honor. Poes\u00eda. Una columna sobre diversidad americana. El cuarto tiempo tiene su propio ritmo.',
+        '2020s': 'Tiempo Zombie \u2014 porque me niego a parar. Una declaraci\u00f3n antirracista para Riverside. Un rol de consultor\u00eda en el museo Cheech. Trabajo cultural en El Gato con Botas: El \u00daltimo Deseo. Una novela debut a los 91. Y ahora, el Sal\u00f3n de la Fama del Educador Multiling\u00fce. La historia contin\u00faa.'
+    },
+    pt: {
+        '1950s': 'Na Am\u00e9rica do p\u00f3s-guerra, um jovem de Kansas City embarcou em um caminho que moldaria como uma na\u00e7\u00e3o pensa sobre diversidade. De UC Berkeley \u00e0 Escola de Jornalismo de Columbia, do servi\u00e7o militar a uma reda\u00e7\u00e3o em Phoenix \u2014 cada passo foi prepara\u00e7\u00e3o para o caminho adiante.',
+        '1960s': 'Pode-se dizer que os anos sessenta fizeram de Carlos Cort\u00e9s um historiador. Uma bolsa da Funda\u00e7\u00e3o Ford o levou ao Brasil. Um doutorado do Novo M\u00e9xico lhe deu as ferramentas. E em 1968, UC Riverside lhe deu um palco que duraria cinquenta e sete anos.',
+        '1970s': 'A sala de aula se expandiu. Um cap\u00edtulo no livro de James Banks lan\u00e7ou uma carreira como palestrante nacional. S\u00e9ries de reimpress\u00e3o preservaram vozes que os livros did\u00e1ticos ignoravam. E uma nova ideia surgiu: que a pr\u00f3pria sociedade \u00e9 um curr\u00edculo, ensinando li\u00e7\u00f5es que nenhuma escola jamais planejou.',
+        '1980s': 'A essa altura, o mundo chamava. PBS queria document\u00e1rios. Harvard queria palestras. O Jap\u00e3o queria perspectiva. O Pr\u00eamio Distinto Humanista da Calif\u00f3rnia em 1980 sinalizou o que todos j\u00e1 sabiam: Carlos Cort\u00e9s havia se tornado o multiculturalista vers\u00e1til.',
+        '1990s': 'Me aposentei antecipadamente da UC em 1994 \u2014 e ent\u00e3o o verdadeiro trabalho come\u00e7ou. Institutos de ver\u00e3o em Harvard, o Instituto Executivo Federal, universidades australianas e o F\u00f3rum Multicultural do Prefeito de Riverside. Aposentadoria era apenas uma palavra.',
+        '2000s': 'Descobri que a televis\u00e3o infantil podia alcan\u00e7ar milh\u00f5es. Quando a Nickelodeon me pediu para assessorar Dora a Aventureira, vi uma oportunidade de moldar como toda uma gera\u00e7\u00e3o entendia a diferen\u00e7a cultural. O Pr\u00eamio NAACP Image em 2009 confirmou que o trabalho importava.',
+        '2010s': 'Chamaram de "Desacelerando", mas eu n\u00e3o havia terminado. Uma mem\u00f3ria sobre crescer inter-racial. Uma enciclop\u00e9dia de quatro volumes. Uma cidade que nomeou um pr\u00eamio em minha honra. Poesia. Uma coluna sobre diversidade americana. O quarto tempo tem seu pr\u00f3prio ritmo.',
+        '2020s': 'Tempo Zumbi \u2014 porque me recuso a parar. Uma declara\u00e7\u00e3o antirracista para Riverside. Um papel de consultoria no museu Cheech. Trabalho cultural em Gato de Botas: O \u00daltimo Pedido. Um romance de estreia aos 91. E agora, o Hall da Fama do Educador Multil\u00edngue. A hist\u00f3ria continua.'
+    }
+};
+
+// Entry translations will be loaded from window.ENTRIES_ES and window.ENTRIES_PT (set by i18n.js)
+// Fallback to empty objects if not loaded yet
+function getEntryTranslations(lang) {
+    if (lang === 'es') return window.ENTRIES_ES || {};
+    if (lang === 'pt') return window.ENTRIES_PT || {};
+    return {};
+}
 
 let currentLang = 'en';
 
@@ -651,11 +797,27 @@ function setLanguage(lang) {
     const strings = I18N[lang];
     if (!strings) return;
 
-    // Update all data-i18n elements
+    // Update all data-i18n text elements
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (strings[key]) {
             el.textContent = strings[key];
+        }
+    });
+
+    // Update placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (strings[key]) {
+            el.placeholder = strings[key];
+        }
+    });
+
+    // Update prompt chips (data-prompt attribute)
+    document.querySelectorAll('[data-i18n-prompt]').forEach(el => {
+        const key = el.dataset.i18nPrompt;
+        if (strings[key]) {
+            el.dataset.prompt = strings[key];
         }
     });
 
@@ -667,10 +829,65 @@ function setLanguage(lang) {
         btn.classList.toggle('active', btn.dataset.lang === lang);
     });
 
+    // Re-render narrative timeline and works with translations
+    reRenderContent(lang);
+
+    // Reset narrator and immediately narrate the visible decade in the new language
+    if (window.narrator) {
+        window.narrator.narrated.clear();
+        window.narrator.stopCurrent();
+        window.narrator.narrateVisibleDecade();
+    }
+
     // Notify chat module
     if (typeof window.setChatLanguage === 'function') {
         window.setChatLanguage(lang);
     }
+}
+
+// Re-render dynamic content (narrative timeline, works, awards) in new language
+function reRenderContent(lang) {
+    const narrativeContainer = document.getElementById('narrative-timeline');
+    const pubsGrid = document.getElementById('publications-grid');
+    const awardsGrid = document.getElementById('awards-grid');
+
+    if (narrativeContainer && state.data) {
+        const nt = new NarrativeTimeline(narrativeContainer);
+        nt.render(lang);
+        // Re-observe scroll-reveal elements
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+        narrativeContainer.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+    }
+
+    if (pubsGrid && state.data) {
+        const wr = new WorksRenderer();
+        wr.renderPublications(pubsGrid, lang);
+    }
+
+    if (awardsGrid && state.data) {
+        const wr = new WorksRenderer();
+        wr.renderAwards(awardsGrid, lang);
+    }
+
+    // Re-render SVG timeline theme labels
+    document.querySelectorAll('.decade-theme-text').forEach(el => {
+        const marker = el.closest('.decade-marker');
+        if (!marker) return;
+        const decade = marker.dataset.decade;
+        if (lang === 'en') {
+            const cfg = CONFIG.decades.find(d => d.key === decade);
+            if (cfg) el.textContent = cfg.theme;
+        } else if (DECADE_THEMES_I18N[lang]?.[decade]) {
+            el.textContent = DECADE_THEMES_I18N[lang][decade];
+        }
+    });
 }
 
 function setupLanguageSwitcher() {

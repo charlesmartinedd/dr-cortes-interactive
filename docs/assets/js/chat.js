@@ -113,8 +113,10 @@ async function speakResponse(text) {
         // Stop background narration while chatbot speaks
         pauseNarrator();
 
-        // Show speaking indicator
+        // Show speaking indicators
         audioIndicator?.classList.add('speaking');
+        const speakingWave = document.getElementById('avatar-speaking-wave');
+        speakingWave?.classList.add('speaking');
 
         const ttsRes = await fetch('/api/tts', {
             method: 'POST',
@@ -125,6 +127,7 @@ async function speakResponse(text) {
         if (!ttsRes.ok) {
             console.error('TTS error:', ttsRes.status);
             audioIndicator?.classList.remove('speaking');
+            speakingWave?.classList.remove('speaking');
             return;
         }
 
@@ -137,12 +140,14 @@ async function speakResponse(text) {
 
         ttsAudio.onended = () => {
             audioIndicator?.classList.remove('speaking');
+            speakingWave?.classList.remove('speaking');
             URL.revokeObjectURL(audioUrl);
         };
 
     } catch (error) {
         console.error('TTS error:', error);
         audioIndicator?.classList.remove('speaking');
+        document.getElementById('avatar-speaking-wave')?.classList.remove('speaking');
     }
 }
 

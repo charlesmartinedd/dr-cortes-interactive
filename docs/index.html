@@ -23,7 +23,7 @@
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <p class="loading-text">Loading Timeline...</p>
+            <p class="loading-text" data-i18n="loading">Loading Timeline...</p>
         </div>
     </div>
 
@@ -34,11 +34,11 @@
                 <span class="title-primary">Dr. Carlos E. Cort&eacute;s</span>
             </a>
             <nav class="header-nav">
-                <a href="#hero" class="nav-link active" data-section="hero">Home</a>
-                <a href="#timeline" class="nav-link" data-section="timeline">Timeline</a>
-                <a href="#story" class="nav-link" data-section="story">Story</a>
-                <a href="#ask" class="nav-link" data-section="ask">Ask</a>
-                <a href="#works" class="nav-link" data-section="works">Works</a>
+                <a href="#hero" class="nav-link active" data-section="hero" data-i18n="nav_home">Home</a>
+                <a href="#timeline" class="nav-link" data-section="timeline" data-i18n="nav_timeline">Timeline</a>
+                <a href="#story" class="nav-link" data-section="story" data-i18n="nav_story">Story</a>
+                <a href="#ask" class="nav-link" data-section="ask" data-i18n="nav_ask">Ask</a>
+                <a href="#works" class="nav-link" data-section="works" data-i18n="nav_works">Works</a>
                 <!-- Language Switcher -->
                 <div class="lang-switcher" id="lang-switcher">
                     <button class="lang-btn active" data-lang="en" title="English">EN</button>
@@ -88,7 +88,7 @@
                     <span class="hero-stat-label" data-i18n="stat_milestones">Milestones</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="hero-stat-number" data-target="8">0</span>
+                    <span class="hero-stat-number" data-target="7">0</span>
                     <span class="hero-stat-label" data-i18n="stat_decades">Decades</span>
                 </div>
             </div>
@@ -133,6 +133,9 @@
             <!-- Avatar Photo + Audio -->
             <div class="ask-avatar-container">
                 <img src="assets/images/carlos-cortes.jpg" alt="Dr. Carlos E. Cort&eacute;s" class="ask-avatar-photo">
+                <div class="avatar-speaking-wave" id="avatar-speaking-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
                 <div class="ask-avatar-status" id="avatar-status">
                     <div class="audio-indicator" id="audio-indicator">
                         <span></span><span></span><span></span>
@@ -144,22 +147,22 @@
 
             <!-- Prompt Chips -->
             <div class="prompt-chips" id="prompt-chips">
-                <button class="prompt-chip" data-prompt="What inspired your work in multicultural education?">What inspired your work?</button>
-                <button class="prompt-chip" data-prompt="Tell me about your experience with Dora the Explorer at Nickelodeon.">Tell me about Dora</button>
-                <button class="prompt-chip" data-prompt="What was it like growing up in an interracial family in the 1940s?">Growing up interracial</button>
-                <button class="prompt-chip" data-prompt="What is the societal curriculum and why does it matter?">Societal curriculum</button>
+                <button class="prompt-chip" data-prompt="What inspired your work in multicultural education?" data-i18n="prompt_1" data-i18n-prompt="prompt_1_full">What inspired your work?</button>
+                <button class="prompt-chip" data-prompt="Tell me about your experience with Dora the Explorer at Nickelodeon." data-i18n="prompt_2" data-i18n-prompt="prompt_2_full">Tell me about Dora</button>
+                <button class="prompt-chip" data-prompt="What was it like growing up in an interracial family in the 1940s?" data-i18n="prompt_3" data-i18n-prompt="prompt_3_full">Growing up interracial</button>
+                <button class="prompt-chip" data-prompt="What is the societal curriculum and why does it matter?" data-i18n="prompt_4" data-i18n-prompt="prompt_4_full">Societal curriculum</button>
             </div>
 
             <!-- Chat Messages -->
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-welcome">
-                    <p>Start a conversation with Dr. Cort&eacute;s about his life's work in multicultural education.</p>
+                    <p data-i18n="chat_welcome">Start a conversation with Dr. Cort&eacute;s about his life's work in multicultural education.</p>
                 </div>
             </div>
 
             <!-- Chat Input -->
             <div class="chat-input-container">
-                <input type="text" id="user-input" class="chat-input" placeholder="Ask Dr. Cort&eacute;s a question..." disabled>
+                <input type="text" id="user-input" class="chat-input" placeholder="Ask Dr. Cort&eacute;s a question..." data-i18n-placeholder="chat_placeholder" disabled>
                 <button id="send-btn" class="chat-send-btn" disabled aria-label="Send message">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -209,7 +212,7 @@
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="m21 21-4.35-4.35"></path>
                         </svg>
-                        <input type="search" id="search-input" class="search-input" placeholder="Search by title, category, year..." aria-label="Search works">
+                        <input type="search" id="search-input" class="search-input" placeholder="Search by title, category, year..." data-i18n-placeholder="search_placeholder" aria-label="Search works">
                     </div>
                     <div class="search-results" id="search-results">
                         <!-- Populated by JavaScript -->
@@ -218,6 +221,15 @@
             </div>
         </div>
     </div>
+
+    <!-- Translation Data (ES/PT entry translations) -->
+    <script src="assets/js/timeline-entries-es.js"></script>
+    <script src="assets/js/timeline-entries-pt.js"></script>
+    <script>
+        // Expose translations globally for app.js
+        window.ENTRIES_ES = typeof ENTRIES_ES !== 'undefined' ? ENTRIES_ES : {};
+        window.ENTRIES_PT = typeof ENTRIES_PT !== 'undefined' ? ENTRIES_PT : {};
+    </script>
 
     <!-- Main Application Script -->
     <script src="assets/js/app.js"></script>
