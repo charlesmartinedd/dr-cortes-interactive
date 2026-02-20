@@ -3,6 +3,73 @@
 // Scroll-driven narrative experience
 // ========================================
 
+// ========== AUDIO AMPLIFIER (Web Audio API GainNode) ==========
+class AudioAmplifier {
+    constructor(audioElement, storageKey, defaultGain = 1.5) {
+        this.audio = audioElement;
+        this.storageKey = storageKey;
+        this.defaultGain = defaultGain;
+        this.ctx = null;
+        this.gainNode = null;
+        this.source = null;
+        this.initialized = false;
+        this.mutedGain = null; // stores gain before mute
+
+        // Restore from localStorage
+        const saved = localStorage.getItem(storageKey);
+        this._pendingGain = saved !== null ? parseFloat(saved) : defaultGain;
+    }
+
+    _init() {
+        if (this.initialized) return;
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        this.source = this.ctx.createMediaElementSource(this.audio);
+        this.gainNode = this.ctx.createGain();
+        this.gainNode.gain.value = this._pendingGain;
+        this.source.connect(this.gainNode);
+        this.gainNode.connect(this.ctx.destination);
+        this.initialized = true;
+    }
+
+    ensureReady() {
+        if (!this.initialized) this._init();
+        if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume();
+        }
+    }
+
+    setGain(value) {
+        this._pendingGain = value;
+        localStorage.setItem(this.storageKey, value.toString());
+        if (this.gainNode) {
+            this.gainNode.gain.value = value;
+        }
+    }
+
+    getGain() {
+        return this.gainNode ? this.gainNode.gain.value : this._pendingGain;
+    }
+
+    mute() {
+        this.mutedGain = this.getGain();
+        this.setGain(0);
+    }
+
+    unmute() {
+        if (this.mutedGain !== null) {
+            this.setGain(this.mutedGain);
+            this.mutedGain = null;
+        }
+    }
+
+    isMuted() {
+        return this.mutedGain !== null;
+    }
+}
+
+// Expose globally for chat.js
+window.AudioAmplifier = AudioAmplifier;
+
 // Configuration
 const CONFIG = {
     dataUrl: 'assets/data/timeline-data.json',
@@ -367,12 +434,17 @@ class TimelineNarrator {
     }
 
     init() {
+        // Create audio amplifier
+        this.amplifier = new AudioAmplifier(this.audio, 'narrator-volume', 1.5);
+
         // Create a floating narrator indicator
         this.indicator = document.createElement('div');
         this.indicator.className = 'narrator-indicator';
+        const savedVol = this.amplifier.getGain();
         this.indicator.innerHTML = `
             <div class="narrator-wave"><span></span><span></span><span></span></div>
             <span class="narrator-label">Narrating...</span>
+            <input type="range" class="vol-slider narrator-vol-slider" id="narrator-vol-slider" min="0" max="300" value="${Math.round(savedVol * 100)}" aria-label="Narrator volume">
             <button class="narrator-mute" aria-label="Mute narration" title="Mute narration">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -381,6 +453,13 @@ class TimelineNarrator {
             </button>
         `;
         document.body.appendChild(this.indicator);
+
+        // Volume slider
+        const volSlider = this.indicator.querySelector('#narrator-vol-slider');
+        volSlider.addEventListener('input', (e) => {
+            const gain = parseInt(e.target.value) / 100;
+            this.amplifier.setGain(gain);
+        });
 
         // Mute button
         this.indicator.querySelector('.narrator-mute').addEventListener('click', () => {
@@ -470,6 +549,7 @@ class TimelineNarrator {
 
     async playNarration(text) {
         if (!this.enabled) return;
+        this.amplifier.ensureReady();
         this.isPlaying = true;
         this.indicator.classList.add('active');
 

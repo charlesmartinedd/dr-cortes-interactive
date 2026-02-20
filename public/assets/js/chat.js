@@ -20,6 +20,23 @@ const sendBtn = document.getElementById('send-btn');
 const connectBtn = document.getElementById('connect-btn');
 const promptChips = document.getElementById('prompt-chips');
 
+// Audio amplifier (Web Audio API GainNode for volume boost)
+let chatAmplifier = null;
+function getChatAmplifier() {
+    if (!chatAmplifier && window.AudioAmplifier) {
+        chatAmplifier = new window.AudioAmplifier(ttsAudio, 'chatbot-volume', 1.5);
+        // Wire up volume slider
+        const volSlider = document.getElementById('chatbot-vol-slider');
+        if (volSlider) {
+            volSlider.value = Math.round(chatAmplifier.getGain() * 100);
+            volSlider.addEventListener('input', (e) => {
+                chatAmplifier.setGain(parseInt(e.target.value) / 100);
+            });
+        }
+    }
+    return chatAmplifier;
+}
+
 // State
 let ws = null;
 let isConnected = false;
@@ -112,6 +129,10 @@ async function speakResponse(text) {
 
         // Stop background narration while chatbot speaks
         pauseNarrator();
+
+        // Initialize audio amplifier on first use (needs user gesture)
+        const amp = getChatAmplifier();
+        if (amp) amp.ensureReady();
 
         // Show speaking indicators
         audioIndicator?.classList.add('speaking');

@@ -1459,6 +1459,81 @@ body.light .theme-toggle .icon-moon { display: block !important; }
     color: var(--color-text);
 }
 
+/* ========== VOLUME SLIDERS (shared) ========== */
+.vol-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 64px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.vol-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    cursor: pointer;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.vol-slider::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px;
+}
+
+.vol-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Narrator volume slider */
+.narrator-vol-slider {
+    width: 52px;
+}
+
+/* ========== CHATBOT VOLUME CONTROL (on avatar photo) ========== */
+.avatar-volume-control {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.avatar-volume-control .vol-icon {
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
+}
+
+.avatar-volume-control .vol-slider {
+    width: 60px;
+}
+
 /* ========== UTILITY ========== */
 .hidden {
     display: none !important;
