@@ -11,13 +11,14 @@
  */
 
 // Import Simli Client from ESM
-import { SimliClient } from 'https://esm.sh/simli-client@2.0.0';
+import { SimliClient } from 'https://esm.sh/simli-client@latest';
 
 // Config - fetched from server (not hardcoded for security)
 let SIMLI_API_KEY = '';
 let SIMLI_FACE_ID = '';
 
 // Fetch config from server on load
+let configPromise = null;
 async function loadConfig() {
     try {
         const res = await fetch('/api/config');
@@ -29,7 +30,7 @@ async function loadConfig() {
         console.error('Failed to load config:', err);
     }
 }
-loadConfig();
+configPromise = loadConfig();
 
 // Elements
 const chatBtn = document.getElementById('btn-chat');
@@ -45,6 +46,9 @@ const messagesEl = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 const connectBtn = document.getElementById('connect-btn');
+const avatarContainer = document.getElementById('avatar-container');
+const modeToggle = document.getElementById('chat-mode-toggle');
+const modeLabel = document.getElementById('mode-label');
 
 // State
 let ws = null;
@@ -53,6 +57,9 @@ let isConnected = false;
 let keepaliveInterval = null;
 let isPanelOpen = false;
 let hasInitialized = false;
+let chatMode = 'text'; // 'text' or 'avatar'
+let simliInitialized = false;
+let audioContext = null;
 
 // Preload state
 let wsPreloaded = false;
@@ -73,28 +80,34 @@ function toggleChatPanel(forceState) {
     }
 }
 
-function openChatPanel() {
+async function openChatPanel() {
     isPanelOpen = true;
     chatPanel.classList.add('active');
     chatPanel.setAttribute('aria-hidden', 'false');
     chatOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Initialize Simli on first open
-    // IMPORTANT: Wait for panel animation (350ms) to complete before initializing
-    // Simli needs the video element to be fully visible for WebRTC to work
     if (!hasInitialized) {
         hasInitialized = true;
-        setTimeout(() => {
-            initSimli();
+
+        if (chatMode === 'text') {
+            // Text mode: just connect WebSocket, show photo, enable chat
+            statusText.textContent = 'Ready to chat';
+            connectWebSocket();
+            // Enable chat once WebSocket connects (handled in ws.onopen)
+        } else {
+            // Avatar mode: full Simli initialization
+            await configPromise;
             setTimeout(() => {
-                // Show better status if WebSocket already preloaded
-                statusText.textContent = wsPreloaded
-                    ? 'Connecting avatar...'
-                    : 'Connecting to Dr. Cortés...';
-                connectToSimli();
-            }, 500);
-        }, 400);
+                initSimli();
+                setTimeout(() => {
+                    statusText.textContent = wsPreloaded
+                        ? 'Connecting avatar...'
+                        : 'Connecting to Dr. Cortés...';
+                    connectToSimli();
+                }, 500);
+            }, 400);
+        }
     }
 }
 
@@ -224,8 +237,11 @@ function connectWebSocket() {
         // Send warmup ping to backend
         warmupAI();
 
-        // Only update status if panel is open
-        if (isPanelOpen && statusText) {
+        if (chatMode === 'text') {
+            // In text mode, enable chat immediately (no Simli dependency)
+            enableChat();
+            if (statusText) statusText.textContent = 'Ready to chat';
+        } else if (isPanelOpen && statusText) {
             statusText.textContent = 'WebSocket ready, waiting for avatar...';
         }
     };
@@ -290,7 +306,13 @@ async function speakResponse(text) {
             return;
         }
 
-        // Check if Simli is connected
+        // Text mode: play TTS through Web Audio API (no Simli)
+        if (chatMode === 'text') {
+            await speakResponseTextMode(text);
+            return;
+        }
+
+        // Avatar mode: pipe through Simli (original flow)
         if (!isConnected || !simliClient) {
             console.log('Simli not connected, skipping speech');
             return;
@@ -347,6 +369,49 @@ async function speakResponse(text) {
         if (isConnected) {
             startKeepalive();
         }
+    }
+}
+
+// Text mode TTS: fetch PCM16 from /api/tts, decode and play via Web Audio API
+async function speakResponseTextMode(text) {
+    try {
+        const ttsRes = await fetch('/api/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+
+        const arrayBuf = await ttsRes.arrayBuffer();
+        const pcm16 = new Int16Array(arrayBuf);
+
+        // Convert PCM16 to Float32 for Web Audio API
+        const float32 = new Float32Array(pcm16.length);
+        for (let i = 0; i < pcm16.length; i++) {
+            float32[i] = pcm16[i] / 32768;
+        }
+
+        // Create AudioContext on demand (browsers require user gesture)
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+        }
+
+        // Resume if suspended (autoplay policy)
+        if (audioContext.state === 'suspended') {
+            await audioContext.resume();
+        }
+
+        // Create audio buffer and play
+        const audioBuf = audioContext.createBuffer(1, float32.length, 16000);
+        audioBuf.getChannelData(0).set(float32);
+
+        const source = audioContext.createBufferSource();
+        source.buffer = audioBuf;
+        source.connect(audioContext.destination);
+        source.start();
+
+        console.log(`Playing TTS audio (${float32.length} samples at 16kHz)`);
+    } catch (error) {
+        console.error('Text mode TTS error:', error);
     }
 }
 
@@ -414,6 +479,39 @@ document.addEventListener('keydown', (e) => {
         toggleChatPanel(false);
     }
 });
+
+// Mode toggle
+modeToggle.addEventListener('click', handleModeToggle);
+
+function handleModeToggle() {
+    if (chatMode === 'text') {
+        chatMode = 'avatar';
+        modeLabel.textContent = 'Avatar Mode';
+        avatarContainer.classList.remove('text-mode');
+
+        // If avatar hasn't been initialized yet, start Simli
+        if (!simliInitialized) {
+            simliInitialized = true;
+            statusText.textContent = 'Connecting avatar...';
+            placeholder.classList.remove('hidden');
+            (async () => {
+                await configPromise;
+                initSimli();
+                setTimeout(() => connectToSimli(), 500);
+            })();
+        }
+    } else {
+        chatMode = 'text';
+        modeLabel.textContent = 'Text Mode';
+        avatarContainer.classList.add('text-mode');
+        statusText.textContent = 'Ready to chat';
+
+        // Ensure chat is enabled in text mode if WS is connected
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            enableChat();
+        }
+    }
+}
 
 // Reconnect button
 connectBtn.addEventListener('click', connectToSimli);

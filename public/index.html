@@ -179,6 +179,9 @@
     <!-- Chat Panel (slides in from right) -->
     <aside id="chat-panel" class="chat-panel" aria-hidden="true">
         <div class="chat-panel-header">
+            <button class="chat-mode-toggle" id="chat-mode-toggle" aria-label="Toggle chat mode">
+                <span id="mode-label">Text Mode</span>
+            </button>
             <button class="chat-close-btn" id="chat-close" aria-label="Close chat">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -187,8 +190,9 @@
             </button>
         </div>
 
-        <!-- Simli Avatar -->
-        <div class="chat-avatar-container">
+        <!-- Avatar Area -->
+        <div class="chat-avatar-container text-mode" id="avatar-container">
+            <img id="avatar-static" class="avatar-static" src="/assets/images/carlos-cortes.jpg" alt="Dr. Carlos E. Cortés">
             <video id="avatar-video" autoplay playsinline></video>
             <div id="avatar-placeholder" class="avatar-placeholder">
                 <div class="avatar-placeholder-icon">
