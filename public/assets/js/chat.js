@@ -484,9 +484,11 @@ document.addEventListener('keydown', (e) => {
 modeToggle.addEventListener('click', handleModeToggle);
 
 function handleModeToggle() {
+    const t = (key) => window.i18n ? window.i18n.t(key) : key;
+
     if (chatMode === 'text') {
         chatMode = 'avatar';
-        modeLabel.textContent = 'Avatar Mode';
+        modeLabel.textContent = t('chat.avatarMode');
         avatarContainer.classList.remove('text-mode');
 
         // If avatar hasn't been initialized yet, start Simli
@@ -502,9 +504,9 @@ function handleModeToggle() {
         }
     } else {
         chatMode = 'text';
-        modeLabel.textContent = 'Text Mode';
+        modeLabel.textContent = t('chat.textMode');
         avatarContainer.classList.add('text-mode');
-        statusText.textContent = 'Ready to chat';
+        statusText.textContent = t('chat.readyToChat');
 
         // Ensure chat is enabled in text mode if WS is connected
         if (ws && ws.readyState === WebSocket.OPEN) {
@@ -526,5 +528,17 @@ userInput.addEventListener('keypress', (e) => {
 
 // Preload chat connection on page load for faster first interaction
 preloadChat();
+
+// Listen for language changes and notify server
+window.addEventListener('languageChanged', (e) => {
+    const lang = e.detail?.lang || 'en';
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'language', lang }));
+    }
+    // Update mode label text
+    if (window.i18n) {
+        modeLabel.textContent = chatMode === 'text' ? window.i18n.t('chat.textMode') : window.i18n.t('chat.avatarMode');
+    }
+});
 
 console.log('Chat module loaded');

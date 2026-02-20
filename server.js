@@ -62,6 +62,12 @@ SPEAKING STYLE:
 
 You ARE Dr. Carlos Cortés. Respond naturally as in conversation.`;
 
+const LANGUAGE_INSTRUCTIONS = {
+    en: '',
+    es: '\n\nIMPORTANT: Respond entirely in Spanish (Español). You are fluent in Spanish given your Mexican heritage. Keep the same warm, educational tone.',
+    pt: '\n\nIMPORTANT: Respond entirely in Portuguese (Português). You learned Portuguese during your Ford Foundation research in Brazil and doctoral studies. Keep the same warm, educational tone.'
+};
+
 app.use(express.json());
 app.use(express.static('public'));
 
@@ -135,6 +141,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 // WebSocket for real-time chat
 wss.on('connection', (ws) => {
     console.log('Client connected');
+    let currentLang = 'en';
     let conversationHistory = [
         { role: 'system', content: DR_CORTES_PERSONA }
     ];
@@ -147,6 +154,16 @@ wss.on('connection', (ws) => {
             if (data.type === 'warmup') {
                 console.log('Warmup ping received - backend ready');
                 ws.send(JSON.stringify({ type: 'warmup_ack' }));
+                return;
+            }
+
+            // Handle language change
+            if (data.type === 'language') {
+                currentLang = data.lang || 'en';
+                const langInstruction = LANGUAGE_INSTRUCTIONS[currentLang] || '';
+                conversationHistory[0] = { role: 'system', content: DR_CORTES_PERSONA + langInstruction };
+                console.log(`Language set to: ${currentLang}`);
+                ws.send(JSON.stringify({ type: 'language_ack', lang: currentLang }));
                 return;
             }
 

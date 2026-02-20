@@ -271,6 +271,9 @@ class ModalManager {
             state.activeModal.classList.remove('active');
             state.activeModal = null;
 
+            // Stop narration when leaving a section
+            if (window.narration) window.narration.onSectionLeave();
+
             // If there's a parent modal, return to it instead of main page
             if (state.parentModal && !suppressParentNav) {
                 const parentModalId = state.parentModal;
@@ -443,6 +446,9 @@ class ModalManager {
         });
 
         this.openModal('modal-decade');
+
+        // Trigger narration for this decade
+        if (window.narration) window.narration.onDecadeOpen(decadeKey);
     }
 
     createWorkCard(work) {
@@ -571,6 +577,45 @@ function setupDecadeNav() {
     });
 }
 
+// ========== THEME TOGGLE ==========
+function setupThemeToggle() {
+    const saved = localStorage.getItem('dr-cortes-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('dr-cortes-theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('dr-cortes-theme', 'dark');
+        }
+    });
+}
+
+// ========== LANGUAGE SWITCHER ==========
+function setupLanguageSwitcher() {
+    // Initialize from i18n manager
+    if (window.i18n) {
+        window.i18n.updateDOM();
+        window.i18n.updateLangButtons();
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            if (window.i18n) {
+                window.i18n.setLanguage(lang);
+            }
+        });
+    });
+}
+
 // ========== EVENT HANDLERS ==========
 function setupEventHandlers() {
     // Navigation buttons
@@ -615,6 +660,9 @@ const modalManager = new ModalManager();
 
 async function init() {
     try {
+        // Setup theme toggle (early for no flash)
+        setupThemeToggle();
+
         // Load data
         await dataLoader.load();
 
@@ -629,6 +677,9 @@ async function init() {
         // Setup event handlers
         setupEventHandlers();
 
+        // Setup language switcher
+        setupLanguageSwitcher();
+
         // Animate stats counters
         animateStatsCounters();
 
@@ -636,6 +687,9 @@ async function init() {
         setTimeout(() => {
             const loadingScreen = document.getElementById('loading-screen');
             loadingScreen.classList.add('hidden');
+
+            // Start landing narration after page loads
+            if (window.narration) window.narration.onLandingVisible();
         }, 1500);
 
     } catch (error) {

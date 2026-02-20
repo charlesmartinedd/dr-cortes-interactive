@@ -388,6 +388,30 @@
 }
 
 /* ============================================
+   Dark Mode Overrides
+   ============================================ */
+[data-theme="dark"] .chat-panel {
+    background: var(--color-surface-warm, #1e2a3a);
+}
+
+[data-theme="dark"] .chat-input-container {
+    background: var(--color-surface, #1a2332);
+    border-top-color: var(--color-border, #2a3a4e);
+}
+
+[data-theme="dark"] .chat-input {
+    background: var(--color-bg, #121820);
+    border-color: var(--color-border, #2a3a4e);
+    color: var(--color-text, #e8e4de);
+}
+
+[data-theme="dark"] .chat-message.assistant {
+    background: var(--color-surface, #1a2332);
+    color: var(--color-text, #e8e4de);
+    border-color: var(--color-border, #2a3a4e);
+}
+
+/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 480px) {
