@@ -6,32 +6,17 @@
 // Configuration
 const CONFIG = {
     dataUrl: 'assets/data/timeline-data.json',
-    markerRadius: 45, // Compact for viewport fit
+    markerRadius: 38, // Compact for 8 decade markers
     decades: [
-        { key: '1970s', range: '1970-1979', theme: 'Chicano Studies Pioneer', color: '#1e3a5f' },
-        { key: '1980s', range: '1980-1989', theme: 'Multicultural Education Leader', color: '#8b2942' },
-        { key: '1990s', range: '1990-1999', theme: 'Media & Diversity Scholar', color: '#1e3a5f' },
-        { key: '2000s', range: '2000-2009', theme: 'Creative Consulting', color: '#8b2942' },
-        { key: '2010s', range: '2010-2019', theme: 'Creative Works & Memoirs', color: '#1e3a5f' },
-        { key: '2020s', range: '2020-2025', theme: 'Anti-Racism & Renewal', color: '#8b2942' }
-    ],
-    categoryColors: {
-        'Books - Scholarly': '#1976d2',
-        'Books - Edited Works': '#0288d1',
-        'Articles': '#00796b',
-        'Blogs': '#f57c00',
-        'Plays': '#c2185b',
-        'Novels': '#7b1fa2',
-        'Books - Poetry': '#512da8',
-        'Biography/Memoir': '#d32f2f',
-        'Consulting Projects': '#0097a7',
-        'Curriculum Development': '#388e3c',
-        'Videos': '#e64a19',
-        'Teaching Materials': '#5d4037',
-        'Administrative Work': '#455a64',
-        'Papers': '#689f38',
-        'Books - Textbook Contributions': '#00838f'
-    }
+        { key: '1950s', range: '1950-1961', theme: 'The Road to Riverside', color: '#1e3a5f' },
+        { key: '1960s', range: '1962-1969', theme: 'Becoming a Historian', color: '#8b2942' },
+        { key: '1970s', range: '1970-1979', theme: 'Lurching into K-12 Education', color: '#1e3a5f' },
+        { key: '1980s', range: '1980-1989', theme: 'The All-Purpose Multiculturalist', color: '#8b2942' },
+        { key: '1990s', range: '1990-1999', theme: "Everybody's Adjunct", color: '#1e3a5f' },
+        { key: '2000s', range: '2000-2009', theme: 'Curtain Going Up', color: '#8b2942' },
+        { key: '2010s', range: '2010-2019', theme: 'Winding Down', color: '#1e3a5f' },
+        { key: '2020s', range: '2020-2026', theme: 'Zombie Time', color: '#8b2942' }
+    ]
 };
 
 // Global state
@@ -70,168 +55,40 @@ class DataLoader {
                 name: "Dr. Carlos E. Cortés",
                 title: "Edward A. Dickson Emeritus Professor of History",
                 institution: "University of California, Riverside",
-                bio: "Pioneering figure in multicultural education, ethnic studies, and diversity scholarship with a career spanning over five decades.",
-                careerStart: 1968,
-                totalWorks: "400+",
+                bio: "Pioneering figure in multicultural education, ethnic studies, and diversity scholarship with a career spanning seven decades.",
+                careerStart: 1955,
+                totalWorks: "85",
                 awards: [
-                    {
-                        year: 1974,
-                        award: "Hubert Herring Memorial Award",
-                        description: "Pacific Coast Council on Latin American Studies for Gaúcho Politics in Brazil"
-                    },
-                    {
-                        year: 2009,
-                        award: "NAACP Image Award",
-                        description: "Creative/Cultural Advisory work for Nickelodeon"
-                    },
-                    {
-                        year: 2017,
-                        award: "Honorable Mention - International Latino Book Awards",
-                        description: "Best Book of Poetry for Fourth Quarter"
-                    },
-                    {
-                        year: 2020,
-                        award: "Constantine Panunzio Distinguished Emeriti Award",
-                        description: "University of California (first from UCR)"
-                    }
+                    { year: 1974, award: "Hubert Herring Memorial Award", description: "For Gaúcho Politics in Brazil" },
+                    { year: 2009, award: "NAACP Image Award", description: "Nickelodeon advisory work" },
+                    { year: 2021, award: "Constantine Panunzio Distinguished Emeriti Award", description: "First from UCR" }
                 ]
             },
             decades: {
-                '1970s': {
-                    theme: 'Chicano Studies Pioneer',
-                    totalWorks: 8,
-                    categories: {
-                        'Books - Scholarly': [
-                            {
-                                title: "Gaúcho Politics in Brazil",
-                                year: 1974,
-                                category: "Books - Scholarly",
-                                description: "Scholarly monograph examining regional politics in Rio Grande do Sul, Brazil.",
-                                awards: "Hubert Herring Memorial Award",
-                                isbn: "082630303X",
-                                url: "https://www.amazon.com/Gaucho-Politics-Brazil-Grande-1930-1964/dp/082630303X"
-                            },
-                            {
-                                title: "Three Perspectives on Ethnicity",
-                                year: 1976,
-                                category: "Books - Scholarly",
-                                description: "Comparative analysis of Black, Chicano, and Native American ethnic experiences.",
-                                isbn: "9780399503696"
-                            }
-                        ],
-                        'Articles': [
-                            {
-                                title: "Teaching the Chicano Experience",
-                                year: 1973,
-                                category: "Articles",
-                                description: "Foundational chapter on Chicano Studies pedagogy in James Banks' influential volume.",
-                                url: "https://eric.ed.gov/?id=ED079204"
-                            }
-                        ]
-                    }
-                },
-                '1980s': {
-                    theme: 'Multicultural Education Leader',
-                    totalWorks: 12,
-                    categories: {
-                        'Books - Edited Works': [
-                            {
-                                title: "Hispanics in the United States (30 volumes)",
-                                year: 1980,
-                                category: "Books - Edited Works",
-                                description: "Monumental 30-volume series of Hispanic scholarship reprints.",
-                                significance: "Major reference work in Hispanic studies"
-                            }
-                        ]
-                    }
-                },
-                '1990s': {
-                    theme: 'Media & Diversity Scholar',
-                    totalWorks: 15,
-                    categories: {
-                        'Articles': [
-                            {
-                                title: "Media & Values Magazine Columns",
-                                year: 1994,
-                                category: "Articles",
-                                description: "Series of articles on media treatment of diversity."
-                            }
-                        ]
-                    }
-                },
-                '2000s': {
-                    theme: 'Creative Consulting',
-                    totalWorks: 10,
-                    categories: {
-                        'Books - Scholarly': [
-                            {
-                                title: "The Children Are Watching",
-                                year: 2000,
-                                category: "Books - Scholarly",
-                                description: "Groundbreaking book analyzing how media teaches about diversity.",
-                                isbn: "9780807739372",
-                                url: "https://www.amazon.com/Children-Are-Watching-Diversity-Multicultural/dp/0807739375"
-                            },
-                            {
-                                title: "The Making—and Remaking—of a Multiculturalist",
-                                year: 2002,
-                                category: "Books - Scholarly",
-                                description: "Autobiographical educational memoir tracing the multicultural education movement.",
-                                isbn: "9780807742518"
-                            }
-                        ]
-                    }
-                },
-                '2010s': {
-                    theme: 'Creative Works & Memoirs',
-                    totalWorks: 8,
-                    categories: {
-                        'Biography/Memoir': [
-                            {
-                                title: "Rose Hill: An Intermarriage before Its Time",
-                                year: 2012,
-                                category: "Biography/Memoir",
-                                description: "Memoir about growing up in an interracial, interfaith family in Kansas City.",
-                                isbn: "9781597141888",
-                                url: "https://www.heydaybooks.com/catalog/rose-hill-an-intermarriage-before-its-time/"
-                            }
-                        ],
-                        'Books - Poetry': [
-                            {
-                                title: "Fourth Quarter: Reflections of a Cranky Old Man",
-                                year: 2016,
-                                category: "Books - Poetry",
-                                description: "Poetry collection reflecting on aging and cultural change.",
-                                awards: "Honorable Mention - 2017 International Latino Book Awards",
-                                url: "https://www.amazon.com/Fourth-Quarter-Reflections-Cranky-Old/dp/1945378042"
-                            }
-                        ]
-                    }
-                },
-                '2020s': {
-                    theme: 'Anti-Racism & Renewal',
-                    totalWorks: 4,
-                    categories: {
-                        'Novels': [
-                            {
-                                title: "Scouts' Honor",
-                                year: 2025,
-                                category: "Novels",
-                                description: "Debut novel at age 91 - mystery set at Boy Scout Camp Matulia.",
-                                significance: "First novel after career in academic scholarship"
-                            }
-                        ],
-                        'Articles': [
-                            {
-                                title: "Renewing Multicultural Education: An Ancient Mariner's Manifesto",
-                                year: 2025,
-                                category: "Articles",
-                                description: "Keynote address on three bad habits in multicultural education.",
-                                url: "https://doi.org/10.1080/15210960.2025.2558492"
-                            }
-                        ]
-                    }
-                }
+                '1950s': { theme: 'The Road to Riverside', totalEntries: 7, entries: [
+                    { title: "B.A., Communications and Public Policy, UC Berkeley", year: "1956", description: "Graduated Phi Beta Kappa from UC Berkeley." }
+                ]},
+                '1960s': { theme: 'Becoming a Historian', totalEntries: 6, entries: [
+                    { title: "Began Career as History Professor at UCR", year: "1968", description: "Launched a 57-year association with UC Riverside." }
+                ]},
+                '1970s': { theme: 'Lurching into K-12 Education', totalEntries: 12, entries: [
+                    { title: "Gaúcho Politics in Brazil", year: "1974", description: "Award-winning first book on Brazilian politics." }
+                ]},
+                '1980s': { theme: 'The All-Purpose Multiculturalist', totalEntries: 12, entries: [
+                    { title: "Beyond Language", year: "1986", description: "Influential bilingual education publication." }
+                ]},
+                '1990s': { theme: "Everybody's Adjunct", totalEntries: 12, entries: [
+                    { title: "Took Early Retirement from UC", year: "1994", description: "Post-retirement career proved most productive." }
+                ]},
+                '2000s': { theme: 'Curtain Going Up', totalEntries: 12, entries: [
+                    { title: "The Children Are Watching", year: "2000", description: "Landmark book on media and diversity." }
+                ]},
+                '2010s': { theme: 'Winding Down', totalEntries: 12, entries: [
+                    { title: "Rose Hill", year: "2012", description: "Memoir about growing up in an interracial family." }
+                ]},
+                '2020s': { theme: 'Zombie Time', totalEntries: 12, entries: [
+                    { title: "Scouts' Honor", year: "2025", description: "Debut novel at age 91." }
+                ]}
             }
         };
     }
@@ -241,7 +98,9 @@ class DataLoader {
 
         const works = [];
         for (const decade of Object.values(state.data.decades)) {
-            if (decade.categories) {
+            if (decade.entries) {
+                works.push(...decade.entries);
+            } else if (decade.categories) {
                 for (const category of Object.values(decade.categories)) {
                     works.push(...category);
                 }
@@ -257,8 +116,7 @@ class DataLoader {
         return allWorks.filter(work => {
             return (
                 work.title.toLowerCase().includes(lowerQuery) ||
-                work.category.toLowerCase().includes(lowerQuery) ||
-                work.description.toLowerCase().includes(lowerQuery) ||
+                (work.description || '').toLowerCase().includes(lowerQuery) ||
                 work.year.toString().includes(query)
             );
         });
@@ -269,7 +127,7 @@ class DataLoader {
 class TimelineRenderer {
     constructor(svgElement) {
         this.svg = svgElement;
-        this.width = 960; // Compact for ~900px viewports
+        this.width = 1200; // Wider for 8 decade markers
         this.height = 420;
     }
 
@@ -351,16 +209,16 @@ class TimelineRenderer {
         theme.classList.add('decade-theme-text');
         theme.textContent = decade.theme;
 
-        // Works count badge (positioned below theme)
+        // Entry count badge (positioned below theme)
         if (state.data?.decades?.[decade.key]) {
             const decadeData = state.data.decades[decade.key];
-            const worksCount = decadeData.totalWorks || 0;
+            const entryCount = decadeData.totalEntries || decadeData.totalWorks || 0;
 
             const count = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             count.setAttribute('x', x);
             count.setAttribute('y', y + radius + 50);
             count.classList.add('category-indicator');
-            count.textContent = `${worksCount} works`;
+            count.textContent = `${entryCount} entries`;
             group.appendChild(count);
         }
 
@@ -514,20 +372,18 @@ class ModalManager {
 
         state.selectedDecade = decadeKey;
 
-        // Get works list - show ALL works, no limit
+        // Get entries list - supports both flat entries and legacy categories
         const allWorks = [];
-        if (decade.categories) {
+        if (decade.entries) {
+            allWorks.push(...decade.entries);
+        } else if (decade.categories) {
             for (const works of Object.values(decade.categories)) {
                 allWorks.push(...works);
             }
         }
 
-        // Display ALL works - no limit
         const displayWorks = allWorks;
-
-        // Truncate summary to first 2 sentences for compact display
-        const summaryText = decade.summary ?
-            decade.summary.split('. ').slice(0, 2).join('. ') + '.' : '';
+        const entryCount = decade.totalEntries || decade.totalWorks || displayWorks.length;
 
         // Use decade-stats container for the entire new layout
         const statsContainer = document.getElementById('decade-stats');
@@ -542,48 +398,22 @@ class ModalManager {
                     </div>
                     <div class="decade-header-stats">
                         <div class="header-stat">
-                            <span class="header-stat-number">${decade.totalWorks}</span>
-                            <span class="header-stat-label">Works</span>
-                        </div>
-                        <div class="header-stat">
-                            <span class="header-stat-number">${Object.keys(decade.categories || {}).length}</span>
-                            <span class="header-stat-label">Categories</span>
+                            <span class="header-stat-number">${entryCount}</span>
+                            <span class="header-stat-label">Entries</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sidebar with summary and achievements -->
-                <div class="decade-sidebar">
-                    ${summaryText ? `
-                        <div class="decade-summary-card">
-                            <h4>Overview</h4>
-                            <p>${summaryText}</p>
-                        </div>
-                    ` : ''}
-
-                    ${decade.key_achievements && decade.key_achievements.length > 0 ? `
-                        <div class="decade-achievements-card">
-                            <h4>Key Achievements</h4>
-                            <ul class="achievements-list">
-                                ${decade.key_achievements.slice(0, 4).map(a => `<li>${a}</li>`).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-                </div>
-
-                <!-- Works grid section -->
+                <!-- Chronological entries list -->
                 <div class="decade-works-section">
-                    <div class="works-header">
-                        <h4>All Works (${displayWorks.length})</h4>
-                    </div>
                     <div class="works-compact-grid" id="works-grid-inner">
                         ${displayWorks.map(work => `
                             <div class="work-card-compact" data-title="${work.title}">
                                 <div class="work-card-header">
                                     <span class="work-year-badge">${work.year}</span>
-                                    <span class="work-category-tag">${work.category}</span>
                                 </div>
                                 <h5 class="work-card-title">${work.title}</h5>
+                                <p class="work-card-description">${work.description || ''}</p>
                             </div>
                         `).join('')}
                     </div>
@@ -619,11 +449,7 @@ class ModalManager {
         const card = document.createElement('div');
         card.classList.add('work-card');
 
-        const categoryColor = CONFIG.categoryColors[work.category] || '#1976d2';
-        card.style.setProperty('--card-color', categoryColor);
-
         card.innerHTML = `
-            <div class="work-card-category">${work.category}</div>
             <h3 class="work-card-title">${work.title}</h3>
             <div class="work-card-year">${work.year}</div>
             <div class="work-card-description">${work.description || ''}</div>
@@ -644,13 +470,9 @@ class ModalManager {
             state.parentModal = 'modal-decade';
         }
 
-        const categoryColor = CONFIG.categoryColors[work.category] || '#1976d2';
         const content = document.getElementById('work-detail');
 
         content.innerHTML = `
-            <div class="work-category-badge" style="background: ${categoryColor}">
-                ${work.category}
-            </div>
             <h2 class="work-title">${work.title}</h2>
 
             <div class="work-meta">
@@ -658,53 +480,11 @@ class ModalManager {
                     <span class="work-meta-label">Year:</span>
                     <span class="work-meta-value">${work.year}</span>
                 </div>
-                ${work.isbn ? `
-                    <div class="work-meta-item">
-                        <span class="work-meta-label">ISBN:</span>
-                        <span class="work-meta-value">${work.isbn}</span>
-                    </div>
-                ` : ''}
-                ${work.significance ? `
-                    <div class="work-meta-item">
-                        <span class="work-meta-label">Significance:</span>
-                        <span class="work-meta-value">${work.significance}</span>
-                    </div>
-                ` : ''}
             </div>
 
             <div class="work-description">
                 ${work.description || 'No description available.'}
             </div>
-
-            ${work.enhanced_description ? `
-                <div class="work-enhanced">
-                    <h4>In-Depth Context</h4>
-                    <p>${work.enhanced_description}</p>
-                </div>
-            ` : ''}
-
-            ${work.related_themes && work.related_themes.length > 0 ? `
-                <div class="work-themes">
-                    ${work.related_themes.map(theme => `
-                        <span class="theme-tag">${theme}</span>
-                    `).join('')}
-                </div>
-            ` : ''}
-
-            ${work.awards ? `
-                <div class="work-awards">
-                    <div class="work-awards-title">Awards & Recognition</div>
-                    <div>${work.awards}</div>
-                </div>
-            ` : ''}
-
-            ${work.url ? `
-                <div class="work-links">
-                    <a href="${work.url}" target="_blank" class="work-link">
-                        View External Link →
-                    </a>
-                </div>
-            ` : ''}
         `;
 
         this.openModal('modal-work');
@@ -741,7 +521,7 @@ class ModalManager {
             resultsContainer.innerHTML = results.map(work => `
                 <div class="search-result-item" data-work-title="${work.title}">
                     <div class="search-result-title">${work.title}</div>
-                    <div class="search-result-meta">${work.year} • ${work.category}</div>
+                    <div class="search-result-meta">${work.year}</div>
                 </div>
             `).join('');
 
@@ -755,41 +535,7 @@ class ModalManager {
     }
 
     openFilterModal() {
-        this.openModal('modal-filter');
-
-        const container = document.getElementById('filter-categories');
-        const allWorks = dataLoader.getAllWorks();
-
-        // Count works per category
-        const categoryCounts = {};
-        allWorks.forEach(work => {
-            categoryCounts[work.category] = (categoryCounts[work.category] || 0) + 1;
-        });
-
-        // Render categories
-        container.innerHTML = Object.keys(CONFIG.categoryColors).map(category => `
-            <div class="filter-category" data-category="${category}">
-                <div class="filter-checkbox ${state.activeFilters.has(category) ? 'checked' : ''}"></div>
-                <div class="filter-label">${category}</div>
-                <div class="filter-count">${categoryCounts[category] || 0}</div>
-            </div>
-        `).join('');
-
-        // Add toggle handlers
-        container.querySelectorAll('.filter-category').forEach(item => {
-            item.addEventListener('click', () => {
-                const checkbox = item.querySelector('.filter-checkbox');
-                const category = item.dataset.category;
-
-                checkbox.classList.toggle('checked');
-
-                if (state.activeFilters.has(category)) {
-                    state.activeFilters.delete(category);
-                } else {
-                    state.activeFilters.add(category);
-                }
-            });
-        });
+        // Filter modal removed - data now uses flat chronological entries
     }
 }
 
