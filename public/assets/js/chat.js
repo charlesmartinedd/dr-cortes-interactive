@@ -180,6 +180,9 @@ function sendMessage(text) {
     const msg = text || userInput.value.trim();
     if (!msg || !ws || ws.readyState !== WebSocket.OPEN) return;
 
+    // Stop narrator immediately when user sends a message
+    pauseNarrator();
+
     addMessage('user', msg);
     userInput.value = '';
     sendBtn.disabled = true;
