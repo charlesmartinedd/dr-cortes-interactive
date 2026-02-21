@@ -268,14 +268,40 @@ class TimelineRenderer {
         theme.setAttribute('x', x);
         theme.setAttribute('y', y + radius + 30);
         theme.classList.add('decade-theme-text');
-        theme.textContent = decade.theme;
+
+        // Wrap long theme names into two lines to prevent overflow
+        const maxChars = 18;
+        if (decade.theme.length > maxChars) {
+            const words = decade.theme.split(' ');
+            let line1 = '', line2 = '';
+            for (const word of words) {
+                if ((line1 + ' ' + word).trim().length <= maxChars && !line2) {
+                    line1 = (line1 + ' ' + word).trim();
+                } else {
+                    line2 = (line2 + ' ' + word).trim();
+                }
+            }
+            const tspan1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            tspan1.setAttribute('x', x);
+            tspan1.setAttribute('dy', '0');
+            tspan1.textContent = line1;
+            const tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            tspan2.setAttribute('x', x);
+            tspan2.setAttribute('dy', '14');
+            tspan2.textContent = line2;
+            theme.appendChild(tspan1);
+            theme.appendChild(tspan2);
+        } else {
+            theme.textContent = decade.theme;
+        }
 
         if (state.data?.decades?.[decade.key]) {
             const decadeData = state.data.decades[decade.key];
             const entryCount = decadeData.totalEntries || decadeData.totalWorks || 0;
             const count = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             count.setAttribute('x', x);
-            count.setAttribute('y', y + radius + 50);
+            const countYOffset = decade.theme.length > maxChars ? 64 : 50;
+            count.setAttribute('y', y + radius + countYOffset);
             count.classList.add('category-indicator');
             count.textContent = `${entryCount} entries`;
             group.appendChild(count);
@@ -956,16 +982,44 @@ function reRenderContent(lang) {
         wr.renderAwards(awardsGrid, lang);
     }
 
-    // Re-render SVG timeline theme labels
+    // Re-render SVG timeline theme labels (with wrapping)
     document.querySelectorAll('.decade-theme-text').forEach(el => {
         const marker = el.closest('.decade-marker');
         if (!marker) return;
         const decade = marker.dataset.decade;
+        let themeText = '';
         if (lang === 'en') {
             const cfg = CONFIG.decades.find(d => d.key === decade);
-            if (cfg) el.textContent = cfg.theme;
+            if (cfg) themeText = cfg.theme;
         } else if (DECADE_THEMES_I18N[lang]?.[decade]) {
-            el.textContent = DECADE_THEMES_I18N[lang][decade];
+            themeText = DECADE_THEMES_I18N[lang][decade];
+        }
+        if (!themeText) return;
+        el.textContent = '';
+        while (el.firstChild) el.removeChild(el.firstChild);
+        const maxChars = 18;
+        if (themeText.length > maxChars) {
+            const words = themeText.split(' ');
+            let line1 = '', line2 = '';
+            for (const word of words) {
+                if ((line1 + ' ' + word).trim().length <= maxChars && !line2) {
+                    line1 = (line1 + ' ' + word).trim();
+                } else {
+                    line2 = (line2 + ' ' + word).trim();
+                }
+            }
+            const tspan1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            tspan1.setAttribute('x', el.getAttribute('x'));
+            tspan1.setAttribute('dy', '0');
+            tspan1.textContent = line1;
+            const tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            tspan2.setAttribute('x', el.getAttribute('x'));
+            tspan2.setAttribute('dy', '14');
+            tspan2.textContent = line2;
+            el.appendChild(tspan1);
+            el.appendChild(tspan2);
+        } else {
+            el.textContent = themeText;
         }
     });
 }

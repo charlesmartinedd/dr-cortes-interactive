@@ -278,4 +278,11 @@ if (promptChips) {
 // Preload WebSocket on page load
 connectWebSocket();
 
+// Ensure AudioContext is resumed on any user interaction (required by browsers)
+function ensureAudioReady() {
+    const amp = getChatAmplifier();
+    if (amp) amp.ensureReady();
+}
+document.addEventListener('click', ensureAudioReady, { once: true });
+
 console.log('Chat module loaded (photo + voice mode)');
