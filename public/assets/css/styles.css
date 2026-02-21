@@ -1403,7 +1403,8 @@ body.light .theme-toggle .icon-moon { display: block !important; }
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.narrator-indicator.active {
+/* Show indicator (stays visible once first triggered) */
+.narrator-indicator.visible {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
@@ -1411,6 +1412,11 @@ body.light .theme-toggle .icon-moon { display: block !important; }
 
 .narrator-indicator.muted .narrator-label::after {
     content: ' (muted)';
+}
+
+.narrator-indicator.muted .narrator-wave span {
+    animation: none !important;
+    height: 6px;
 }
 
 .narrator-wave {
@@ -1439,6 +1445,10 @@ body.light .theme-toggle .icon-moon { display: block !important; }
     animation-delay: 0.3s;
 }
 
+.narrator-wave.paused span {
+    animation: none !important;
+}
+
 .narrator-mute {
     display: flex;
     align-items: center;
@@ -1465,10 +1475,22 @@ body.light .theme-toggle .icon-moon { display: block !important; }
     appearance: none;
     width: 64px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 2px;
     outline: none;
     cursor: pointer;
+}
+
+body.light .vol-slider {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+body.light .vol-slider::-webkit-slider-runnable-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+body.light .vol-slider::-moz-range-track {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .vol-slider::-webkit-slider-thumb {

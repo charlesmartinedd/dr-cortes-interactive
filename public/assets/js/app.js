@@ -487,7 +487,7 @@ class TimelineNarrator {
             this.amplifier.setGain(gain);
         });
 
-        // Mute button
+        // Mute button — toggles mute but keeps indicator visible
         this.indicator.querySelector('.narrator-mute').addEventListener('click', () => {
             this.enabled = !this.enabled;
             this.indicator.classList.toggle('muted', !this.enabled);
@@ -496,7 +496,10 @@ class TimelineNarrator {
                 this.audio.currentTime = 0;
                 this.isPlaying = false;
                 this.queue = [];
-                this.indicator.classList.remove('active');
+                // Stop wave animation but keep indicator visible
+                this.indicator.querySelector('.narrator-wave')?.classList.add('paused');
+            } else {
+                this.indicator.querySelector('.narrator-wave')?.classList.remove('paused');
             }
             // Update mute icon
             const svg = this.indicator.querySelector('.narrator-mute svg');
@@ -541,6 +544,7 @@ class TimelineNarrator {
         this.isPlaying = false;
         this.queue = [];
         this.indicator?.classList.remove('active');
+        // Keep indicator visible — don't remove 'visible' class
     }
 
     // Find the decade header currently most visible and narrate it
@@ -577,7 +581,8 @@ class TimelineNarrator {
         if (!this.enabled) return;
         this.amplifier.ensureReady();
         this.isPlaying = true;
-        this.indicator.classList.add('active');
+        this.indicator.classList.add('visible'); // Show and keep visible
+        this.indicator.classList.add('active');   // Animate wave
 
         try {
             const res = await fetch('/api/tts', {
