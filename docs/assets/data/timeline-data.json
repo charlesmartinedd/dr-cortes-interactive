@@ -583,7 +583,7 @@
         {
           "title": "Personal Papers Donated to UCR Library",
           "year": "2026",
-          "description": "Donated his personal papers to the UCR Library Special Collections, ensuring that decades of correspondence, research materials, manuscripts, and professional documents from his pioneering career in multicultural education and diversity scholarship are preserved for future researchers and scholars. As a preliminary guide to the collection, his professional autobiography is available."
+          "description": "Donated his personal papers to the UCR Library Special Collections, ensuring that decades of correspondence, research materials, manuscripts, and professional documents from his pioneering career in multicultural education and diversity scholarship are preserved for future researchers and scholars. As a preliminary guide to the collection, <a href=\"#\" class=\"autobiography-link\" onclick=\"openAutobiographyModal(event)\">his professional autobiography is available</a>."
         }
       ]
     }

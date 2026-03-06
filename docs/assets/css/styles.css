@@ -1538,3 +1538,143 @@ body.light .theme-toggle .icon-moon { display: block !important; }
 .hidden {
     display: none !important;
 }
+
+/* ==================== PDF AUTOBIOGRAPHY MODAL ==================== */
+.autobiography-link {
+    color: var(--color-gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-gold-light);
+    transition: all var(--duration-fast) var(--ease);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.autobiography-link:hover {
+    color: var(--color-gold-light);
+    border-bottom-color: transparent;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+.modal-pdf { width: min(900px, 95vw); }
+
+.pdf-modal-header {
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-shrink: 0;
+}
+
+.pdf-modal-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+    flex: 1;
+}
+
+.pdf-modal-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-text-tertiary);
+    margin: 0;
+}
+
+.pdf-page-indicator {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    background: var(--color-bg);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+}
+
+.pdf-viewer-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--space-5) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    scroll-behavior: smooth;
+    max-height: calc(100vh - 200px);
+}
+
+.pdf-viewer-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.pdf-viewer-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.pdf-viewer-container::-webkit-scrollbar-thumb {
+    background: var(--color-border-light);
+    border-radius: var(--radius-full);
+}
+
+.pdf-viewer-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-tertiary);
+}
+
+.pdf-page-canvas {
+    width: 100%;
+    max-width: 800px;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    background: white;
+}
+
+.pdf-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-8);
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+}
+
+.pdf-loading-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+body.light .pdf-page-canvas {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+body.light .autobiography-link {
+    color: var(--color-navy);
+    border-bottom-color: var(--color-navy-light);
+}
+
+body.light .autobiography-link:hover {
+    color: var(--color-navy-dark);
+    text-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .modal-pdf { width: 100vw; }
+    .modal-pdf .modal-container {
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        max-height: 95vh;
+    }
+    .pdf-viewer-container {
+        padding: var(--space-3);
+    }
+    .pdf-modal-header {
+        padding: var(--space-3) var(--space-4);
+        flex-wrap: wrap;
+    }
+}
