@@ -342,6 +342,6 @@ export const ENTRIES_ES = {
 ,
   'Personal Papers Donated to UCR Library': {
     title: 'Documentos Personales Donados a la Biblioteca de UCR',
-    desc: 'Donó sus documentos personales a las Colecciones Especiales de la Biblioteca de UCR, asegurando que décadas de correspondencia, materiales de investigación, manuscritos y documentos profesionales de su carrera pionera en educación multicultural y estudios de diversidad se preserven para futuros investigadores y académicos.'
+    desc: 'Donó sus documentos personales a las Colecciones Especiales de la Biblioteca de UCR, asegurando que décadas de correspondencia, materiales de investigación, manuscritos y documentos profesionales de su carrera pionera en educación multicultural y estudios de diversidad se preserven para futuros investigadores y académicos. Como guía preliminar de la colección, su autobiografía profesional está disponible.'
   }
 };
