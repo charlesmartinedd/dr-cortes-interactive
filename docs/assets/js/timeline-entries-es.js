@@ -338,8 +338,7 @@ export const ENTRIES_ES = {
   'Multilingual Educator Hall of Fame, NABE': {
     title: 'Salón de la Fama del Educador Multilingüe, NABE',
     desc: 'Incorporado al Salón de la Fama del Educador Multilingüe por la Asociación Nacional de Educación Bilingüe. Reconocido por sus contribuciones de toda una vida a la educación bilingüe y multicultural, desde la cofundación de la Asociación de California para la Educación Bilingüe (CABE) en 1975 hasta el presente.'
-  }
-,
+  },
   'Personal Papers Donated to UCR Library': {
     title: 'Documentos Personales Donados a la Biblioteca de UCR',
     desc: 'Donó sus documentos personales a las Colecciones Especiales de la Biblioteca de UCR, asegurando que décadas de correspondencia, materiales de investigación, manuscritos y documentos profesionales de su carrera pionera en educación multicultural y estudios de diversidad se preserven para futuros investigadores y académicos. Como guía preliminar de la colección, <a href="#" class="autobiography-link" onclick="openAutobiographyModal(event)">su autobiografía profesional está disponible</a>.'
