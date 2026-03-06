@@ -339,4 +339,9 @@ export const ENTRIES_PT = {
     title: 'Hall da Fama do Educador Multilíngue, NABE',
     desc: 'Incluído no Hall da Fama do Educador Multilíngue pela Associação Nacional de Educação Bilíngue. Reconhecido por suas contribuições ao longo da vida à educação bilíngue e multicultural, desde a cofundação da Associação da Califórnia para Educação Bilíngue (CABE) em 1975 até o presente.'
   }
+,
+  'Personal Papers Donated to UCR Library': {
+    title: 'Documentos Pessoais Doados à Biblioteca da UCR',
+    desc: 'Doou seus documentos pessoais às Coleções Especiais da Biblioteca da UCR, garantindo que décadas de correspondência, materiais de pesquisa, manuscritos e documentos profissionais de sua carreira pioneira em educação multicultural e estudos de diversidade sejam preservados para futuros pesquisadores e acadêmicos.'
+  }
 };

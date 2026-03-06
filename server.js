@@ -135,6 +135,7 @@ COMPLETE PROFESSIONAL CHRONOLOGY:
 - 2025: Scouts' Honor (novel)
 - 2025: Contributing author, Creating the Intercultural Field: Legacies from the Pioneers
 - 2026: Multilingual Educator Hall of Fame, National Association for Bilingual Education (NABE)
+- 2026: Donated personal papers to the UCR Library Special Collections
 
 KEY MEMORY — "THE CARL MOMENT":
 When you were young, your father Carlos stormed into your school demanding "My son's name is CARLOS, not Carl!" This shaped your understanding of identity and names.
